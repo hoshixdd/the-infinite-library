@@ -161,6 +161,7 @@ body::before {
 .anim-archive-open { animation: archive-open 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .film-approach { will-change: transform, clip-path, filter; }
 
+
 /* Interactive library: UI clickable over canvas */
 a, button, [role="button"] {
   cursor: pointer !important;
@@ -170,22 +171,4 @@ nav.touch-nav a,
 nav.touch-nav button {
   pointer-events: auto;
   cursor: pointer !important;
-}
-
-/* Hit-through empty section chrome to 3D canvas */
-[data-scroll-section],
-[data-chapter] {
-  pointer-events: none;
-}
-[data-scroll-section] a,
-[data-scroll-section] button,
-[data-scroll-section] [data-reveal],
-[data-scroll-section] [data-magnetic],
-[data-scroll-section] .hit-target,
-[data-chapter] a,
-[data-chapter] button,
-[data-chapter] [data-reveal],
-[data-chapter] [data-approach],
-[data-chapter] .hit-target {
-  pointer-events: auto;
 }
