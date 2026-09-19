@@ -1,1 +1,3 @@
-PLACEHOLDER_WILL_REPLACE
+"use client";
+
+export { Atmosphere } from "./atmosphere/Scene";
