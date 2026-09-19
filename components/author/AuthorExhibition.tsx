@@ -4,25 +4,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import type { Author } from "@/lib/authors/types";
-import { initChapterScroll } from "@/lib/motion/scroll";
-import { getTransition } from "@/lib/authors/loaders";
+import { initChapterScroll, magneticMove, magneticReset } from "@/lib/motion/scroll";
+import { getAdjacentAuthors, getTransition } from "@/lib/authors/loaders";
+import { AuthorRoomMotif } from "@/components/rooms/AuthorRoomMotif";
 
 const CHAPTERS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 
 export function AuthorExhibition({ author }: { author: Author }) {
   const ref = useRef<HTMLDivElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
   const transition = getTransition(author.slug);
+  const { prev, next } = getAdjacentAuthors(author.wing, author.slug);
 
   useEffect(() => {
     return initChapterScroll(ref.current);
   }, [author.slug]);
 
   return (
-    <div ref={ref} className="relative z-10">
+    <div ref={ref} className="relative z-10" data-author-room={author.slug}>
+      <AuthorRoomMotif author={author} />
+
       {/* A — Arrival */}
       <section
         data-chapter="A"
-        className="flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center"
+        className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-24 text-center md:min-h-screen"
       >
         <span
           data-reveal
@@ -47,26 +52,49 @@ export function AuthorExhibition({ author }: { author: Author }) {
           className="mt-6 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--paper)]/45"
         >
           {author.birth}
-          {author.death ? ` — ${author.death}` : " — Present"}
+          {author.bornPlace ? ` · ${author.bornPlace}` : ""}
+          {author.death
+            ? ` — ${author.death}${author.diedPlace ? ` · ${author.diedPlace}` : ""}`
+            : " — Present"}
         </p>
+        {author.nationality && (
+          <p
+            data-reveal
+            className="mt-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]/70"
+          >
+            {author.nationality}
+            {author.occupation ? ` · ${author.occupation}` : ""}
+          </p>
+        )}
       </section>
 
       {/* B — Portrait */}
       <section
         data-chapter="B"
-        className="flex min-h-screen flex-col items-center justify-center gap-10 px-6 md:flex-row md:gap-16"
+        className="relative flex min-h-[100svh] flex-col items-center justify-center gap-10 px-6 md:min-h-screen md:flex-row md:gap-16"
       >
-        <div data-reveal className="relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-[var(--gold)]/25">
+        <div
+          ref={portraitRef}
+          data-reveal
+          data-depth
+          className="portrait-frame relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-[var(--gold)]/25"
+          onMouseMove={(e) => {
+            if (portraitRef.current) magneticMove(portraitRef.current, e, 0.05);
+          }}
+          onMouseLeave={() => {
+            if (portraitRef.current) magneticReset(portraitRef.current);
+          }}
+        >
           <Image
             src={author.portrait.src}
             alt={author.portrait.alt}
             fill
             className="object-cover"
-            sizes="320px"
+            sizes="(max-width: 768px) 90vw, 320px"
             priority
           />
         </div>
-        <div className="max-w-md">
+        <div className="max-w-md mobile-stack">
           <span
             data-reveal
             className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
@@ -75,10 +103,21 @@ export function AuthorExhibition({ author }: { author: Author }) {
           </span>
           <p
             data-reveal
-            className="mt-4 font-[family-name:var(--font-inter)] text-xs text-[var(--paper)]/40"
+            className="mt-4 font-[family-name:var(--font-inter)] text-xs leading-relaxed text-[var(--paper)]/45"
           >
             {author.portrait.credit}
           </p>
+          {author.portrait.sourceUrl && (
+            <a
+              data-reveal
+              href={author.portrait.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-wider text-[var(--gold)]/80 underline-offset-4 hover:underline"
+            >
+              Credit source
+            </a>
+          )}
           <ul data-reveal className="mt-6 flex flex-wrap gap-2">
             {author.roles.map((role) => (
               <li
@@ -95,7 +134,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
       {/* C — Life */}
       <section
         data-chapter="C"
-        className="flex min-h-screen flex-col justify-center px-6 py-24 md:px-16 lg:px-28"
+        className="relative flex min-h-[100svh] flex-col justify-center px-6 py-24 md:min-h-screen md:px-16 lg:px-28"
       >
         <span
           data-reveal
@@ -112,10 +151,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
       </section>
 
       {/* D — Works */}
-      <section
-        data-chapter="D"
-        className="min-h-screen px-6 py-28 md:px-16"
-      >
+      <section data-chapter="D" className="relative min-h-[100svh] px-6 py-28 md:min-h-screen md:px-16">
         <span
           data-reveal
           className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
@@ -127,7 +163,9 @@ export function AuthorExhibition({ author }: { author: Author }) {
             <article
               key={work.title}
               data-reveal
-              className="border border-[var(--paper)]/10 bg-[var(--charcoal)]/50 p-6"
+              className="work-card border border-[var(--paper)]/10 bg-[var(--charcoal)]/50 p-6"
+              onMouseMove={(e) => magneticMove(e.currentTarget, e, 0.04)}
+              onMouseLeave={(e) => magneticReset(e.currentTarget)}
             >
               <h3 className="font-[family-name:var(--font-cormorant)] text-2xl text-[var(--ivory)]">
                 {work.title}
@@ -148,7 +186,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
       {/* E — Quote */}
       <section
         data-chapter="E"
-        className="flex min-h-screen flex-col items-center justify-center px-6 text-center"
+        className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 text-center md:min-h-screen"
       >
         <span
           data-reveal
@@ -158,6 +196,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
         </span>
         <blockquote
           data-reveal
+          data-depth
           className="mt-10 max-w-3xl font-[family-name:var(--font-cormorant)] text-3xl italic leading-snug text-[var(--ivory)] md:text-5xl"
         >
           &ldquo;{author.quote}&rdquo;
@@ -167,7 +206,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
       {/* F — Significance & Fact */}
       <section
         data-chapter="F"
-        className="flex min-h-screen flex-col justify-center gap-12 px-6 py-24 md:flex-row md:px-16"
+        className="relative flex min-h-[100svh] flex-col justify-center gap-12 px-6 py-24 md:min-h-screen md:flex-row md:px-16"
       >
         <div className="flex-1">
           <span
@@ -202,7 +241,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
       {/* G — Visual concept */}
       <section
         data-chapter="G"
-        className="flex min-h-screen flex-col justify-center px-6 py-24 md:px-16"
+        className="relative flex min-h-[100svh] flex-col justify-center px-6 py-24 md:min-h-screen md:px-16"
       >
         <span
           data-reveal
@@ -228,10 +267,10 @@ export function AuthorExhibition({ author }: { author: Author }) {
         </ul>
       </section>
 
-      {/* H — Transition out */}
+      {/* H — Transition out + nav */}
       <section
         data-chapter="H"
-        className="flex min-h-screen flex-col items-center justify-center px-6 pb-32 text-center"
+        className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pb-32 text-center md:min-h-screen"
       >
         <span
           data-reveal
@@ -251,18 +290,42 @@ export function AuthorExhibition({ author }: { author: Author }) {
         >
           {transition?.description}
         </p>
-        <div data-reveal className="mt-14 flex flex-wrap justify-center gap-4">
+        <div data-reveal className="touch-nav mt-14 flex flex-wrap justify-center gap-4">
+          {prev && (
+            <Link
+              href={`/${author.wing}/${prev.slug}`}
+              className="border border-[var(--paper)]/25 px-6 py-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--paper)]/80 hover:border-[var(--gold)]/50"
+            >
+              ← {prev.name}
+            </Link>
+          )}
           <Link
             href={`/${author.wing}`}
             className="border border-[var(--paper)]/25 px-6 py-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--paper)]/80 hover:border-[var(--gold)]/50"
           >
             Back to wing
           </Link>
+          {next && (
+            <Link
+              href={`/${author.wing}/${next.slug}`}
+              className="border border-[var(--gold)]/50 px-6 py-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--gold)] hover:bg-[var(--gold)]/10"
+            >
+              {next.name} →
+            </Link>
+          )}
+        </div>
+        <div data-reveal className="mt-6 flex flex-wrap justify-center gap-4">
           <Link
             href="/archive"
-            className="border border-[var(--gold)]/50 px-6 py-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--gold)] hover:bg-[var(--gold)]/10"
+            className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--paper)]/45 hover:text-[var(--gold)]"
           >
             Archive sources
+          </Link>
+          <Link
+            href="/constellation"
+            className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.25em] text-[var(--paper)]/45 hover:text-[var(--gold)]"
+          >
+            Constellation
           </Link>
         </div>
         <p className="sr-only">Sections {CHAPTERS.join(", ")}</p>
