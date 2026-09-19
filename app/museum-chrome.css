@@ -1,0 +1,162 @@
+/* Museum / film chrome — additive layer over base globals */
+:root {
+  --wood: #2a2420;
+  --archive: #0c0a08;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@media (min-width: 768px) {
+  [data-scroll-section],
+  [data-chapter] {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+  }
+}
+
+@media (max-width: 767px) {
+  .film-letterbox { display: none; }
+  .mobile-hide-3d-heavy { opacity: 0.4 !important; }
+}
+
+.film-vignette {
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(9, 9, 9, 0.55) 78%, rgba(9, 9, 9, 0.88) 100%);
+}
+.film-letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(12px, 2.5vh, 28px);
+  background: #050505;
+  opacity: 0.55;
+}
+.film-letterbox--top { top: 0; }
+.film-letterbox--bottom { bottom: 0; }
+
+.light-shaft {
+  position: absolute;
+  top: -10%;
+  width: clamp(80px, 14vw, 180px);
+  height: 130%;
+  background: linear-gradient(180deg, rgba(168, 146, 90, 0.18) 0%, rgba(168, 146, 90, 0.05) 45%, transparent 100%);
+  filter: blur(18px);
+  transform-origin: top center;
+  animation: shaft-breathe 9s ease-in-out infinite;
+}
+.light-shaft--a { left: 28%; transform: skewX(-12deg) rotate(4deg); }
+.light-shaft--b { left: 58%; transform: skewX(-8deg) rotate(-3deg); animation-delay: -3.5s; opacity: 0.7; }
+.light-shaft--warm {
+  background: linear-gradient(180deg, rgba(196, 176, 138, 0.2) 0%, rgba(168, 146, 90, 0.06) 50%, transparent 100%);
+}
+.light-shaft--cool {
+  background: linear-gradient(180deg, rgba(180, 190, 200, 0.12) 0%, rgba(100, 120, 140, 0.04) 50%, transparent 100%);
+}
+.dust-motes {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(244, 239, 230, 0.35), transparent),
+    radial-gradient(1px 1px at 70% 45%, rgba(168, 146, 90, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(232, 224, 212, 0.25), transparent),
+    radial-gradient(1px 1px at 85% 20%, rgba(196, 176, 138, 0.3), transparent),
+    radial-gradient(1px 1px at 55% 85%, rgba(244, 239, 230, 0.2), transparent);
+  animation: dust-drift 18s linear infinite;
+  opacity: 0.55;
+}
+@keyframes shaft-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+@keyframes dust-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-40px); }
+}
+
+.gallery-frame { position: relative; }
+.gallery-frame__mat {
+  padding: 10px;
+  background: linear-gradient(145deg, #3a342c 0%, #1a1612 50%, #2a2420 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(168, 146, 90, 0.25), inset 0 0 0 3px rgba(26, 22, 18, 0.9);
+}
+.gallery-frame__inner {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+}
+.gallery-spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(244, 239, 230, 0.14), transparent 65%);
+  opacity: 0.7;
+  transition: opacity 0.6s ease;
+}
+.gallery-frame:hover .gallery-spotlight { opacity: 1; }
+.gallery-wall-label {
+  border-left: 2px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  padding-left: 0.75rem;
+}
+
+.exhibit-plinth { isolation: isolate; }
+.exhibit-plinth__shelf {
+  height: 10px;
+  margin: 0 8% -2px;
+  background: linear-gradient(180deg, #3a342c, #1a1612);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 1px;
+}
+.exhibit-plinth__book { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4); }
+.exhibit-plinth__spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 50%, transparent), color-mix(in srgb, var(--filipino-brown) 70%, transparent));
+}
+.exhibit-caption-rail {
+  border-top: 1px solid color-mix(in srgb, var(--paper) 12%, transparent);
+}
+
+.wing-warm { --wing-glow: color-mix(in srgb, var(--filipino-green) 22%, transparent); }
+.wing-cool { --wing-glow: color-mix(in srgb, var(--gold) 18%, transparent); }
+
+.library-arch-paper {
+  background: radial-gradient(ellipse at 50% 30%, rgba(168, 146, 90, 0.1), transparent 55%),
+    linear-gradient(180deg, transparent 0%, rgba(12, 10, 8, 0.4) 100%);
+}
+.shelf-silhouette {
+  background-image: repeating-linear-gradient(90deg, transparent 0, transparent 14px, color-mix(in srgb, var(--filipino-brown) 35%, transparent) 14px, color-mix(in srgb, var(--filipino-brown) 35%, transparent) 22px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 48px, color-mix(in srgb, var(--wood) 80%, transparent) 48px, color-mix(in srgb, var(--wood) 80%, transparent) 52px);
+  opacity: 0.25;
+}
+
+@keyframes film-iris {
+  0% { clip-path: circle(0% at 50% 50%); opacity: 1; }
+  35% { clip-path: circle(75% at 50% 50%); opacity: 1; }
+  70% { clip-path: circle(100% at 50% 50%); opacity: 1; }
+  100% { clip-path: circle(0% at 50% 48%); opacity: 0; }
+}
+@keyframes film-wipe-pull {
+  0% { clip-path: inset(0 0 100% 0); transform: scale(1.04); opacity: 1; }
+  28% { clip-path: inset(0 0 0 0); transform: scale(1); opacity: 1; }
+  72% { clip-path: inset(0 0 0 0); transform: scale(0.98); opacity: 1; }
+  100% { clip-path: inset(100% 0 0 0); transform: scale(0.94); opacity: 0; }
+}
+@keyframes archive-open {
+  0% { clip-path: inset(48% 42% 48% 42%); filter: brightness(0.2); }
+  55% { clip-path: inset(8% 6% 8% 6%); filter: brightness(0.7); }
+  100% { clip-path: inset(0 0 0 0); filter: brightness(1); }
+}
+
+.anim-wipe { animation: film-wipe-pull 1.15s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; }
+.anim-iris { animation: film-iris 1.25s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; }
+.anim-archive-open { animation: archive-open 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.film-approach { will-change: transform, clip-path, filter; }

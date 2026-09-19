@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import "./museum-chrome.css";
 import { Nav } from "@/components/shell/Nav";
 import { Progress } from "@/components/shell/Progress";
 import { CustomCursor } from "@/components/shell/CustomCursor";
