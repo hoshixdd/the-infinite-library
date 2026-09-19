@@ -1,0 +1,250 @@
+{
+  "title": "Archive of Sources",
+  "description": "Research links and institutional sources used across THE INFINITE LIBRARY exhibitions. Replace placeholder portraits with credited historical images before public launch.",
+  "sources": [
+    {
+      "label": "Academy of American Poets \u2014 Carlos Bulosan",
+      "url": "https://poets.org/poet/carlos-bulosan",
+      "authors": [
+        "carlos-bulosan"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "American Academy of Arts and Sciences",
+      "url": "https://www.amacad.org/",
+      "authors": [
+        "carlos-bulosan"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "University of Washington Libraries exhibit",
+      "url": "https://www.lib.washington.edu/",
+      "authors": [
+        "carlos-bulosan"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "National Commission for Culture and the Arts",
+      "url": "https://ncca.gov.ph/",
+      "authors": [
+        "nvm-gonzalez",
+        "f-sionil-jose",
+        "jose-rizal",
+        "amado-v-hernandez",
+        "nick-joaquin"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "National Historical Commission of the Philippines",
+      "url": "https://nhcp.gov.ph/",
+      "authors": [
+        "graciano-lopez-jaena",
+        "jose-rizal",
+        "francisco-balagtas"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "Philippine literary histories / university collections",
+      "url": "https://www.up.edu.ph/",
+      "authors": [
+        "stevan-javellana"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "Philippine literary press & obituaries archives",
+      "url": "https://ncca.gov.ph/",
+      "authors": [
+        "lualhati-bautista"
+      ],
+      "wing": "filipino"
+    },
+    {
+      "label": "Tolkien Estate / scholarly bibliographies",
+      "url": "https://www.tolkienestate.com/",
+      "authors": [
+        "jrr-tolkien"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Nobel Prize biography",
+      "url": "https://www.nobelprize.org/",
+      "authors": [
+        "gabriel-garcia-marquez"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Cervantes scholarship / Biblioteca Nacional de Espa\u00f1a",
+      "url": "https://www.bne.es/",
+      "authors": [
+        "miguel-de-cervantes"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Dickens Museum / public domain editions",
+      "url": "https://dickensmuseum.com/",
+      "authors": [
+        "charles-dickens"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Saint-Exup\u00e9ry foundations / public biographies",
+      "url": "https://www.antoinedesaintexupery.com/",
+      "authors": [
+        "antoine-de-saint-exupery"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Orwell Foundation / public domain editions (where applicable)",
+      "url": "https://www.orwellfoundation.com/",
+      "authors": [
+        "george-orwell"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Nobel Prize / Hemingway collections",
+      "url": "https://www.nobelprize.org/",
+      "authors": [
+        "ernest-hemingway"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Tolstoy museums / public domain translations",
+      "url": "https://tolstoymuseum.ru/",
+      "authors": [
+        "leo-tolstoy"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Folger Shakespeare Library",
+      "url": "https://www.folger.edu/",
+      "authors": [
+        "william-shakespeare"
+      ],
+      "wing": "international"
+    },
+    {
+      "label": "Author bibliography / publisher records",
+      "url": "https://www.jkrowling.com/",
+      "authors": [
+        "jk-rowling"
+      ],
+      "wing": "international"
+    }
+  ],
+  "portraitTodos": [
+    {
+      "slug": "carlos-bulosan",
+      "name": "Carlos Bulosan",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "nvm-gonzalez",
+      "name": "N. V. M. Gonz\u00e1lez",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "graciano-lopez-jaena",
+      "name": "Graciano L\u00f3pez Jaena",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "stevan-javellana",
+      "name": "Stevan Javellana",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "f-sionil-jose",
+      "name": "F. Sionil Jos\u00e9",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "jose-rizal",
+      "name": "Jos\u00e9 Rizal",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "amado-v-hernandez",
+      "name": "Amado V. Hernandez",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "francisco-balagtas",
+      "name": "Francisco Balagtas",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "lualhati-bautista",
+      "name": "Lualhati Bautista",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "nick-joaquin",
+      "name": "Nick Joaquin",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "jrr-tolkien",
+      "name": "J. R. R. Tolkien",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "gabriel-garcia-marquez",
+      "name": "Gabriel Garc\u00eda M\u00e1rquez",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "miguel-de-cervantes",
+      "name": "Miguel de Cervantes",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "charles-dickens",
+      "name": "Charles Dickens",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "antoine-de-saint-exupery",
+      "name": "Antoine de Saint-Exup\u00e9ry",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "george-orwell",
+      "name": "George Orwell",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "ernest-hemingway",
+      "name": "Leo Tolstoy",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "leo-tolstoy",
+      "name": "Leo Tolstoy",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "william-shakespeare",
+      "name": "William Shakespeare",
+      "note": "TODO: replace with credited historical image"
+    },
+    {
+      "slug": "jk-rowling",
+      "name": "J. K. Rowling",
+      "note": "TODO: replace with credited historical image"
+    }
+  ]
+}

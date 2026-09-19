@@ -1,0 +1,122 @@
+{
+  "carlos-bulosan": {
+    "transitionOut": "map-line",
+    "description": "A glowing migration route draws itself across darkness, then dissolves into the next gallery.",
+    "wing": "filipino",
+    "name": "Carlos Bulosan"
+  },
+  "nvm-gonzalez": {
+    "transitionOut": "bamboo-to-paper",
+    "description": "Bamboo stalks flatten into paper grain as light shifts from green to ivory.",
+    "wing": "filipino",
+    "name": "N. V. M. Gonz\u00e1lez"
+  },
+  "graciano-lopez-jaena": {
+    "transitionOut": "newspaper-fill",
+    "description": "Columned newsprint floods the frame until only a headline aperture remains.",
+    "wing": "filipino",
+    "name": "Graciano L\u00f3pez Jaena"
+  },
+  "stevan-javellana": {
+    "transitionOut": "paper-to-dawn",
+    "description": "War-torn paper brightens into a thin horizontal dawn.",
+    "wing": "filipino",
+    "name": "Stevan Javellana"
+  },
+  "f-sionil-jose": {
+    "transitionOut": "timeline-to-manuscript",
+    "description": "A horizontal timeline thickens into handwritten manuscript lines.",
+    "wing": "filipino",
+    "name": "F. Sionil Jos\u00e9"
+  },
+  "jose-rizal": {
+    "transitionOut": "ink-spread",
+    "description": "A drop of ink blooms across parchment into an archipelago silhouette.",
+    "wing": "filipino",
+    "name": "Jos\u00e9 Rizal"
+  },
+  "amado-v-hernandez": {
+    "transitionOut": "bars-open",
+    "description": "Vertical prison bars part like a curtain onto open sky.",
+    "wing": "filipino",
+    "name": "Amado V. Hernandez"
+  },
+  "francisco-balagtas": {
+    "transitionOut": "poetry-to-type",
+    "description": "Calligraphic strokes resolve into metal type sorts and printed verse.",
+    "wing": "filipino",
+    "name": "Francisco Balagtas"
+  },
+  "lualhati-bautista": {
+    "transitionOut": "typewriter-door",
+    "description": "Typewriter keys strike a doorway that swings open into the next wing.",
+    "wing": "filipino",
+    "name": "Lualhati Bautista"
+  },
+  "nick-joaquin": {
+    "transitionOut": "intramuros-portal",
+    "description": "Stone gate of Intramuros becomes a luminous portal between centuries.",
+    "wing": "filipino",
+    "name": "Nick Joaquin"
+  },
+  "jrr-tolkien": {
+    "transitionOut": "map-zoom",
+    "description": "A hand-drawn map zooms from continent to annotated path (no film grade).",
+    "wing": "international",
+    "name": "J. R. R. Tolkien"
+  },
+  "gabriel-garcia-marquez": {
+    "transitionOut": "ordinary-to-impossible",
+    "description": "A domestic object tips; physics loosens into the marvelous.",
+    "wing": "international",
+    "name": "Gabriel Garc\u00eda M\u00e1rquez"
+  },
+  "miguel-de-cervantes": {
+    "transitionOut": "windmill-wipe",
+    "description": "Giant blades wipe the scene like a cinematic iris of cloth and wood.",
+    "wing": "international",
+    "name": "Miguel de Cervantes"
+  },
+  "charles-dickens": {
+    "transitionOut": "fog-fill",
+    "description": "Industrial fog fills the gallery until gaslight points remain.",
+    "wing": "international",
+    "name": "Charles Dickens"
+  },
+  "antoine-de-saint-exupery": {
+    "transitionOut": "rise-to-sky",
+    "description": "Camera rises from sand and fuselage into star field.",
+    "wing": "international",
+    "name": "Antoine de Saint-Exup\u00e9ry"
+  },
+  "george-orwell": {
+    "transitionOut": "surveillance-intercept",
+    "description": "A searchlight beam cuts the text mid-sentence.",
+    "wing": "international",
+    "name": "George Orwell"
+  },
+  "ernest-hemingway": {
+    "transitionOut": "strip-to-horizon",
+    "description": "Prose lines strip away until a single hard horizon remains.",
+    "wing": "international",
+    "name": "Ernest Hemingway"
+  },
+  "leo-tolstoy": {
+    "transitionOut": "horizon-expand",
+    "description": "A narrow steppe horizon expands to fill the viewport.",
+    "wing": "international",
+    "name": "Leo Tolstoy"
+  },
+  "william-shakespeare": {
+    "transitionOut": "become-stage",
+    "description": "Page texture lifts into wooden stage boards under candlelight.",
+    "wing": "international",
+    "name": "William Shakespeare"
+  },
+  "jk-rowling": {
+    "transitionOut": "pages-to-archive",
+    "description": "Turning pages settle into labeled archive boxes on a shelf.",
+    "wing": "international",
+    "name": "J. K. Rowling"
+  }
+}
