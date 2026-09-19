@@ -43,13 +43,13 @@ npm start       # serve production build
 
 | Path | Purpose |
 |------|---------|
-| `/` | Prologue → Entrance → Lobby |
+| `/` | Prologue → Entrance → Lobby → Closing |
 | `/filipino` | Wing intro + author index |
-| `/filipino/[slug]` | Author exhibition (chapters A–H) |
+| `/filipino/[slug]` | Author exhibition (chapters A–H) + room motifs |
 | `/international` | Wing intro + author index |
-| `/international/[slug]` | Author exhibition (chapters A–H) |
-| `/constellation` | Stub connection map |
-| `/archive` | Rolled-up research sources + portrait TODOs |
+| `/international/[slug]` | Author exhibition (chapters A–H) + room motifs |
+| `/constellation` | 20-voice constellation map + closing sequence |
+| `/archive` | Research sources + portrait credits |
 
 ## Content model
 
@@ -58,41 +58,57 @@ Authors live in:
 - `content/authors/filipino.json`
 - `content/authors/international.json`
 
-Each author includes: slug, order, names, dates, roles, bio, works (title/year/blurb), significance, fact, quote, visualConcept, motifs, transitionOut, portrait, sources.
+Each author includes: slug, order, names, birth/death (+ bornPlace/diedPlace), nationality, occupation, roles, bio, works (title/year/blurb), significance, fact, quote, visualConcept, motifs, transitionOut, portrait `{src,alt,credit,sourceUrl}`, sources.
 
 Supporting files:
 
 - `content/transitions.json` — slug → wipe concept + description
-- `content/archive.json` — unique sources + portrait TODO list
+- `content/archive.json` — unique sources + **portraitCredits**
 
 Loaders: `lib/authors/loaders.ts` + `lib/authors/types.ts`.
 
-## Portrait TODOs
+## Portrait status
 
-All authors currently use `/public/portraits/placeholder.svg` (museum silhouette). Before public launch, replace each portrait with a **credited historical image** and update:
+**Shipped:** 20 original illustrative museum-plate SVGs in `public/portraits/{slug}.svg`.
 
-- `portrait.src`
-- `portrait.credit`
-- `portrait.sourceUrl`
+- Each plate is clearly labeled **illustrative / not a photographic likeness**.
+- `portrait.credit` + `portrait.sourceUrl` point to Wikimedia Commons categories or institutional pages.
+- Wikimedia raster downloads returned HTTP 429 during this build; plates never invent photo credits.
+- Living / rights-unclear authors (e.g. Rowling, recent Filipino figures) use silhouette plates only.
 
-See the Archive page for the full TODO rollup.
+See Archive → Portrait credits.
 
-## Motion / canvas notes
+## Research status
+
+- Split birth/death **places** (`bornPlace` / `diedPlace`) for all 20.
+- `nationality` + `occupation` clarity added.
+- Work blurbs present for every listed work.
+- Expanded real `sources[{label,url}]` (Britannica, Nobel, NCCA, NHCP, Folger, Orwell Foundation, etc.).
+
+## Motion / rooms / mobile
 
 - MAX cinematic intent (Alche-class philosophy, original visuals).
 - **No** `prefers-reduced-motion` media query by design.
-- GSAP ScrollTrigger drives section reveals; R3F canvas is `pointer-events-none` and fixed behind content.
-- Custom spotlight cursor on fine pointers / desktop only; mobile uses editorial stacking and system cursor.
+- GSAP ScrollTrigger: weighted scrub, depth parallax (`data-depth`), magnetic hover on portraits/works/lobby cards.
+- Per-author `AuthorRoomMotif` + next/prev transition wipe from `transitions.json`.
+- Persistent R3F atmosphere (simplified / lower DPR on mobile).
+- Custom spotlight cursor on fine pointers / desktop only.
+- Mobile: stacked editorial composition, touch-friendly nav, no custom cursor conflict.
 - Tolkien / Rowling / Saint-Exupéry: avoid film, Hogwarts/movie, and copyrighted Little Prince art.
+
+## Constellation + closing
+
+- `/constellation` — interactive 20-star map with affinity bridges.
+- Closing statement on home end **and** constellation: *Stories outlive their authors… / THE INFINITE LIBRARY / Explore again*.
 
 ## Deploy (Vercel Hobby)
 
 1. Push this repo to GitHub.
 2. Import the project in [Vercel](https://vercel.com) (Hobby tier is fine).
 3. Framework preset: **Next.js**. Build command `npm run build`, output default.
-4. No required env vars for the scaffold.
-5. After first deploy, swap portrait assets and re-deploy.
+4. No required env vars.
+5. Optional later: replace museum plates with credited PD rasters when Commons allows download.
 
 ## Git
 
-`.gitignore` excludes `node_modules`, `.next`, and local env files. Initialize and commit from the project root when ready; do not commit `node_modules`.
+`.gitignore` excludes `node_modules`, `.next`, and local env files. Do not commit `node_modules`.
