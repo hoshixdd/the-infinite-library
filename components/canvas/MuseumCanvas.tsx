@@ -62,8 +62,8 @@ export function MuseumCanvas() {
       <CanvasErrorBoundary onError={() => setEnabled(false)}>
         <Canvas
           camera={{
-            position: [0, 0.4, mobile ? 11 : 9],
-            fov: mobile ? 52 : 48,
+            position: [0, 0.55, mobile ? 10.5 : 8.5],
+            fov: mobile ? 50 : 46,
             near: 0.1,
             far: 40,
           }}
@@ -77,7 +77,7 @@ export function MuseumCanvas() {
           style={{
             width: "100%",
             height: "100%",
-            opacity: mobile ? 0.55 : 0.95,
+            opacity: mobile ? 0.7 : 1,
           }}
           frameloop="always"
           onCreated={({ gl }) => {
