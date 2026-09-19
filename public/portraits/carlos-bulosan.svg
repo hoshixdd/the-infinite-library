@@ -5,10 +5,22 @@
       <stop offset="0%" stop-color="#090909"/>
       <stop offset="100%" stop-color="#1A1A1A"/>
     </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#2F4A3C" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#2F4A3C" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   <rect width="400" height="500" fill="url(#bg)"/>
   <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2F4A3C" stroke-width="1.5" opacity="0.55"/>
-  <text x="200" y="205" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#F4EFE6">CB</text>
+  <rect x="24" y="24" width="352" height="452" fill="none" stroke="#E8E0D4" stroke-width="0.5" opacity="0.2"/>
+  <rect width="400" height="500" fill="url(#glow)"/>
+  <path d="M50,200 C120,160 200,240 350,180" fill="none" stroke="#2F4A3C" stroke-width="2" opacity="0.45"/><circle cx="50" cy="200" r="4" fill="#A8925A"/><circle cx="350" cy="180" r="4" fill="#A8925A"/>
+  <!-- silhouette bust -->
+  <ellipse cx="200" cy="210" rx="58" ry="70" fill="#0d0d0d" stroke="#2F4A3C" stroke-width="1.2" opacity="0.95"/>
+  <path d="M120,360 C130,280 160,250 200,250 C240,250 270,280 280,360 Z" fill="#0d0d0d" stroke="#2F4A3C" stroke-width="1" opacity="0.9"/>
+  <circle cx="200" cy="200" r="72" fill="none" stroke="#2F4A3C" stroke-width="0.6" opacity="0.35"/>
+  <text x="200" y="205" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#F4EFE6" opacity="0.9">CB</text>
   <text x="200" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#F4EFE6">Carlos Bulosan</text>
   <text x="200" y="422" text-anchor="middle" font-family="monospace" font-size="7" fill="#A8925A" letter-spacing="2">MUSEUM PLATE · ILLUSTRATIVE</text>
+  <text x="200" y="440" text-anchor="middle" font-family="monospace" font-size="6" fill="#E8E0D4" opacity="0.45">Not a photographic likeness — see credit link</text>
 </svg>

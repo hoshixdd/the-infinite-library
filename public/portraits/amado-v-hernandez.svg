@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 400 500" role="img" aria-label="Museum plate portrait for Amado V. Hernandez">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090909"/>
+      <stop offset="100%" stop-color="#1A1A1A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#3B2A1F" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3B2A1F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#3B2A1F" stroke-width="1.5" opacity="0.55"/>
+  <rect x="24" y="24" width="352" height="452" fill="none" stroke="#E8E0D4" stroke-width="0.5" opacity="0.2"/>
+  <rect width="400" height="500" fill="url(#glow)"/>
+  <rect x="60" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="96" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="132" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="168" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="204" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="240" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/><rect x="276" y="70" width="10" height="300" fill="#E8E0D4" opacity="0.12"/>
+  <!-- silhouette bust -->
+  <ellipse cx="200" cy="210" rx="58" ry="70" fill="#0d0d0d" stroke="#3B2A1F" stroke-width="1.2" opacity="0.95"/>
+  <path d="M120,360 C130,280 160,250 200,250 C240,250 270,280 280,360 Z" fill="#0d0d0d" stroke="#3B2A1F" stroke-width="1" opacity="0.9"/>
+  <circle cx="200" cy="200" r="72" fill="none" stroke="#3B2A1F" stroke-width="0.6" opacity="0.35"/>
+  <text x="200" y="205" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#F4EFE6" opacity="0.9">AVH</text>
+  <text x="200" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#F4EFE6">Amado V. Hernandez</text>
+  <text x="200" y="422" text-anchor="middle" font-family="monospace" font-size="7" fill="#A8925A" letter-spacing="2">MUSEUM PLATE · ILLUSTRATIVE</text>
+  <text x="200" y="440" text-anchor="middle" font-family="monospace" font-size="6" fill="#E8E0D4" opacity="0.45">Not a photographic likeness — see credit link</text>
+</svg>
