@@ -3,9 +3,28 @@ import filipino from "@/content/authors/filipino.json";
 import international from "@/content/authors/international.json";
 import transitions from "@/content/transitions.json";
 import archive from "@/content/archive.json";
+import enrichment from "@/content/authors/enrichment.json";
 
-const filipinoAuthors = filipino as Author[];
-const internationalAuthors = international as Author[];
+type Enrichment = Record<
+  string,
+  {
+    bornPlace?: string;
+    diedPlace?: string | null;
+    nationality?: string;
+    occupation?: string;
+  }
+>;
+
+function withEnrichment(authors: Author[]): Author[] {
+  const map = enrichment as Enrichment;
+  return authors.map((a) => {
+    const e = map[a.slug];
+    return e ? { ...a, ...e } : a;
+  });
+}
+
+const filipinoAuthors = withEnrichment(filipino as Author[]);
+const internationalAuthors = withEnrichment(international as Author[]);
 
 export function getAuthorsByWing(wing: Wing): Author[] {
   const list = wing === "filipino" ? filipinoAuthors : internationalAuthors;

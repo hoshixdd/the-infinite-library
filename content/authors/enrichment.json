@@ -1,0 +1,122 @@
+{
+  "carlos-bulosan": {
+    "bornPlace": "Mangusmana, Pangasinan, Philippines",
+    "diedPlace": "Seattle, Washington, United States",
+    "nationality": "Filipino-American",
+    "occupation": "Writer, poet, essayist, and labor activist of the Filipino diaspora"
+  },
+  "nvm-gonzalez": {
+    "bornPlace": "Romblon, Philippines",
+    "diedPlace": "Quezon City / Manila area, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist, short story writer, essayist; National Artist for Literature (1997)"
+  },
+  "graciano-lopez-jaena": {
+    "bornPlace": "Jaro, Iloilo, Philippines",
+    "diedPlace": "Barcelona, Spain",
+    "nationality": "Filipino",
+    "occupation": "Orator, journalist, and Propaganda Movement leader; founder of La Solidaridad"
+  },
+  "stevan-javellana": {
+    "bornPlace": "Iloilo, Philippines",
+    "diedPlace": "Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist and short story writer; author of Without Seeing the Dawn"
+  },
+  "f-sionil-jose": {
+    "bornPlace": "Rosales, Pangasinan, Philippines",
+    "diedPlace": "Manila, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist, short story writer, publisher; National Artist for Literature; architect of the Rosales Saga"
+  },
+  "jose-rizal": {
+    "bornPlace": "Calamba, Laguna, Philippines",
+    "diedPlace": "Bagumbayan (Luneta), Manila, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist, poet, physician, reformist; Philippine national hero"
+  },
+  "amado-v-hernandez": {
+    "bornPlace": "Tondo, Manila, Philippines",
+    "diedPlace": "Manila, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Poet, novelist, journalist, labor leader; National Artist for Literature"
+  },
+  "francisco-balagtas": {
+    "bornPlace": "Bigaa (now Balagtas), Bulacan, Philippines",
+    "diedPlace": "Udyong (Orion), Bataan, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Tagalog poet and playwright; author of Florante at Laura"
+  },
+  "lualhati-bautista": {
+    "bornPlace": "Tondo, Manila, Philippines",
+    "diedPlace": "Quezon City, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist, screenwriter, and feminist voice of martial-law and post-EDSA fiction"
+  },
+  "nick-joaquin": {
+    "bornPlace": "Paco, Manila, Philippines",
+    "diedPlace": "San Juan, Metro Manila, Philippines",
+    "nationality": "Filipino",
+    "occupation": "Novelist, playwright, poet, journalist; National Artist for Literature (Quijano de Manila)"
+  },
+  "jrr-tolkien": {
+    "bornPlace": "Bloemfontein, Orange Free State",
+    "diedPlace": "Bournemouth, England",
+    "nationality": "British",
+    "occupation": "Novelist, philologist, poet, and Oxford professor; architect of Middle-earth"
+  },
+  "gabriel-garcia-marquez": {
+    "bornPlace": "Aracataca, Colombia",
+    "diedPlace": "Mexico City, Mexico",
+    "nationality": "Colombian",
+    "occupation": "Novelist, short story writer, journalist; Nobel Prize in Literature (1982)"
+  },
+  "miguel-de-cervantes": {
+    "bornPlace": "Alcalá de Henares, Spain",
+    "diedPlace": "Madrid, Spain",
+    "nationality": "Spanish",
+    "occupation": "Novelist, playwright, poet, and soldier; author of Don Quixote"
+  },
+  "charles-dickens": {
+    "bornPlace": "Portsmouth, England",
+    "diedPlace": "Gad's Hill Place, Higham, Kent, England",
+    "nationality": "British",
+    "occupation": "Novelist, journalist, and social critic of Victorian London"
+  },
+  "antoine-de-saint-exupery": {
+    "bornPlace": "Lyon, France",
+    "diedPlace": "Mediterranean (lost on reconnaissance flight)",
+    "nationality": "French",
+    "occupation": "Writer, aviator, and essayist of flight and responsibility"
+  },
+  "george-orwell": {
+    "bornPlace": "Motihari, Bihar, British India",
+    "diedPlace": "University College Hospital, London, England",
+    "nationality": "British",
+    "occupation": "Novelist, essayist, journalist, and political critic"
+  },
+  "ernest-hemingway": {
+    "bornPlace": "Oak Park, Illinois, United States",
+    "diedPlace": "Ketchum, Idaho, United States",
+    "nationality": "American",
+    "occupation": "Novelist, short story writer, journalist; Nobel Prize in Literature (1954)"
+  },
+  "leo-tolstoy": {
+    "bornPlace": "Yasnaya Polyana, Tula Governorate, Russian Empire",
+    "diedPlace": "Astapovo (Lev Tolstoy), Russian Empire",
+    "nationality": "Russian",
+    "occupation": "Novelist, essayist, and moral philosopher"
+  },
+  "william-shakespeare": {
+    "bornPlace": "Stratford-upon-Avon, England",
+    "diedPlace": "Stratford-upon-Avon, England",
+    "nationality": "English",
+    "occupation": "Playwright, poet, and actor of the English Renaissance stage"
+  },
+  "jk-rowling": {
+    "bornPlace": "Yate, Gloucestershire, England",
+    "diedPlace": null,
+    "nationality": "British",
+    "occupation": "Novelist; author of the Harry Potter series"
+  }
+}
