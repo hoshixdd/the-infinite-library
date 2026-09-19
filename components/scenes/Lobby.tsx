@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
+import { magneticMove, magneticReset } from "@/lib/motion/scroll";
 
 function MagneticCard({
   href,
@@ -9,51 +10,50 @@ function MagneticCard({
   subtitle,
   accent,
   side,
+  meta,
 }: {
   href: string;
   title: string;
   subtitle: string;
   accent: string;
   side: "left" | "right";
+  meta: string;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
-
-  const onMove = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el || window.matchMedia("(pointer: coarse)").matches) return;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    el.style.transform = `translate(${x * 0.06}px, ${y * 0.06}px)`;
-  };
-
-  const onLeave = () => {
-    if (ref.current) ref.current.style.transform = "translate(0, 0)";
-  };
 
   return (
     <Link
       ref={ref}
       href={href}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      onMouseMove={(e) => {
+        if (ref.current) magneticMove(ref.current, e, 0.07);
+      }}
+      onMouseLeave={() => {
+        if (ref.current) magneticReset(ref.current);
+      }}
       data-reveal
-      className={`group relative flex min-h-[280px] flex-1 flex-col justify-end overflow-hidden border border-[var(--paper)]/10 bg-[var(--charcoal)]/60 p-8 backdrop-blur-sm transition duration-300 hover:border-[var(--gold)]/40 md:min-h-[420px] md:p-10 ${
+      className={`magnetic-card group relative flex min-h-[240px] flex-1 flex-col justify-end overflow-hidden border border-[var(--paper)]/10 bg-[var(--charcoal)]/60 p-8 backdrop-blur-sm md:min-h-[440px] md:p-10 ${
         side === "left" ? "md:mr-3" : "md:ml-3"
       }`}
-      style={{ transition: "transform 0.25s ease-out, border-color 0.3s" }}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-700 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(600px circle at 50% 80%, ${accent}22, transparent 60%)`,
+          background: `radial-gradient(700px circle at 50% 85%, ${accent}28, transparent 55%)`,
         }}
       />
+      <div
+        className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full opacity-20 blur-2xl transition duration-700 group-hover:opacity-40"
+        style={{ background: accent }}
+      />
       <span
-        className="mb-3 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.3em]"
+        className="mb-2 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.3em]"
         style={{ color: accent }}
       >
-        Wing
+        {side === "left" ? "← Left wing" : "Right wing →"}
+      </span>
+      <span className="mb-3 font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.25em] text-[var(--paper)]/40">
+        {meta}
       </span>
       <h3 className="font-[family-name:var(--font-cormorant)] text-3xl text-[var(--ivory)] md:text-5xl">
         {title}
@@ -70,7 +70,7 @@ export function Lobby() {
     <section
       id="lobby"
       data-scroll-section
-      className="relative z-10 flex min-h-screen flex-col justify-center px-5 py-24 md:px-10"
+      className="relative z-10 flex min-h-[100svh] flex-col justify-center px-5 py-24 md:px-10"
     >
       <div className="mb-10 text-center md:mb-14">
         <p
@@ -85,6 +85,13 @@ export function Lobby() {
         >
           Choose a wing
         </h2>
+        <p
+          data-reveal
+          className="mx-auto mt-4 max-w-md font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/55"
+        >
+          Spatial choice: left for the archipelago, right for the world. On
+          desktop, cards magnetize toward your cursor.
+        </p>
       </div>
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 md:flex-row">
         <MagneticCard
@@ -93,6 +100,7 @@ export function Lobby() {
           subtitle="Ten authors from the archipelago and diaspora—labor, nation, verse, and conscience."
           accent="var(--filipino-green)"
           side="left"
+          meta="10 exhibitions"
         />
         <MagneticCard
           href="/international"
@@ -100,6 +108,7 @@ export function Lobby() {
           subtitle="Ten authors across continents—epic, fable, fog, and the modern novel."
           accent="var(--gold)"
           side="right"
+          meta="10 exhibitions"
         />
       </div>
     </section>
