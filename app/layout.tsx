@@ -5,6 +5,7 @@ import { Nav } from "@/components/shell/Nav";
 import { Progress } from "@/components/shell/Progress";
 import { CustomCursor } from "@/components/shell/CustomCursor";
 import { MuseumCanvasMount } from "@/components/canvas/MuseumCanvasMount";
+import { TransitionWipe } from "@/components/rooms/TransitionWipe";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -47,6 +48,7 @@ export default function RootLayout({
     >
       <body className="relative min-h-full">
         <MuseumCanvasMount />
+        <TransitionWipe />
         <Nav />
         <Progress />
         <CustomCursor />
