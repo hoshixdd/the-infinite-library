@@ -1,0 +1,26 @@
+name: Fix portrait src and click handlers
+on:
+  workflow_dispatch:
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply text fixes
+        run: |
+          set -euo pipefail
+          sed -i 's|/portraits/\([^"]*\)\.svg|/portraits/\1.jpg|g' \
+            content/authors/filipino.json \
+            content/authors/international.json \
+            content/archive.json
+          # AuthorExhibition click fix
+          sed -i 's/className={`relative z-10 ${warm/className={`pointer-events-auto relative z-20 ${warm/' \
+            components/author/AuthorExhibition.tsx || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "feat: portrait.src .jpg + AuthorExhibition pointer-events click fix"
+          git push
