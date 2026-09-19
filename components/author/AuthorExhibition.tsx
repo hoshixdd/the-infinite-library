@@ -28,7 +28,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
   return (
     <div
       ref={ref}
-      className={`relative z-10 ${warm ? "wing-warm" : "wing-cool"}`}
+      className={`pointer-events-auto relative z-20 ${warm ? "wing-warm" : "wing-cool"}`}
       data-author-room={author.slug}
     >
       <FilmMask intensity={0.4} />
