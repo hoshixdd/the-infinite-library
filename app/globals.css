@@ -37,6 +37,7 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   min-height: 100vh;
   cursor: none;
+  overflow-x: hidden;
 }
 
 @media (pointer: coarse), (max-width: 767px) {
@@ -55,11 +56,128 @@ a {
   text-decoration: none;
 }
 
-/* Editorial stacking on mobile */
+/* Desktop cinematic depth */
+@media (min-width: 768px) {
+  [data-scroll-section],
+  [data-chapter] {
+    perspective: 1200px;
+  }
+}
+
+/* Mobile: stacked editorial storytelling — not shrunk desktop */
 @media (max-width: 767px) {
   [data-chapter],
   [data-scroll-section] {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    min-height: auto;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
   }
+
+  .mobile-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mobile-hide-3d-heavy {
+    opacity: 0.35 !important;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .touch-nav a,
+  .touch-nav button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@keyframes library-wipe {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 1;
+  }
+  40% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes title-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(168, 146, 90, 0.25);
+  }
+}
+
+.anim-wipe {
+  animation: library-wipe 0.9s ease-in-out forwards;
+}
+
+.anim-dash {
+  animation: dash-flow 14s linear infinite;
+}
+
+.anim-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.anim-title {
+  animation: title-glow 5s ease-in-out infinite;
+}
+
+.magnetic-card {
+  transition: border-color 0.35s ease, box-shadow 0.45s ease;
+}
+
+.magnetic-card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 40px rgba(168, 146, 90, 0.08);
+}
+
+.portrait-frame {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+
+.portrait-frame:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.work-card {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
 }
