@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getArchive } from "@/lib/authors/loaders";
+import { getAllAuthors, getArchive } from "@/lib/authors/loaders";
 
 export const metadata: Metadata = {
   title: "Archive",
@@ -7,10 +7,12 @@ export const metadata: Metadata = {
 
 export default function ArchivePage() {
   const archive = getArchive();
-  const credits = archive.portraitCredits ?? [];
+  const authors = getAllAuthors();
+  const credits = authors.map(author => ({ slug: author.slug, name: author.name, ...author.portrait }));
+  const names = new Map(authors.map(author => [author.slug, author.name]));
 
   return (
-    <section className="relative z-10 mx-auto max-w-3xl px-6 pb-32 pt-28">
+    <section className="archive-editorial relative z-10 mx-auto max-w-3xl px-6 pb-32 pt-28">
       <p className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]">
         Research
       </p>
@@ -18,7 +20,7 @@ export default function ArchivePage() {
         {archive.title}
       </h1>
       <p className="mt-6 font-[family-name:var(--font-inter)] text-sm leading-relaxed text-[var(--paper)]/65">
-        {archive.description}
+        Follow the research behind the collection. Explore institutional archives, biographies, and the portrait credits for each of our twenty voices.
       </p>
 
       <ul className="mt-14 space-y-4">
@@ -36,7 +38,7 @@ export default function ArchivePage() {
               {source.label}
             </a>
             <p className="mt-1 font-[family-name:var(--font-ibm)] text-[10px] text-[var(--paper)]/40">
-              {source.authors.join(", ")}
+              {source.authors.map(slug => names.get(slug) ?? slug).join(", ")}
             </p>
           </li>
         ))}
@@ -46,9 +48,7 @@ export default function ArchivePage() {
         Portrait credits
       </h2>
       <p className="mt-3 font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/55">
-        All portraits currently ship as original illustrative museum plates.
-        Credits link to Wikimedia Commons categories or institutional pages —
-        never claiming photographic rights we do not hold.
+        Attribution for the portraits displayed throughout the library. Where a source link is available, it is included below.
       </p>
       <ul className="mt-6 space-y-4">
         {credits.map((c) => (

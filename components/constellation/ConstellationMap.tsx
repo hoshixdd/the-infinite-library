@@ -49,11 +49,12 @@ export function ConstellationMap({ authors }: { authors: Author[] }) {
   const selected = nodes.find((n) => n.slug === active);
 
   return (
-    <div className="relative mx-auto w-full max-w-5xl">
+    <div className="constellation-explorer relative mx-auto w-full max-w-5xl">
+      <label className="constellation-select"><span>Choose a voice to trace its connections</span><select value={active ?? ""} onChange={e => setActive(e.target.value || null)}><option value="">Explore the twenty voices</option>{authors.map(author => <option key={author.slug} value={author.slug}>{author.name}</option>)}</select></label>
       <svg
         viewBox="0 0 100 100"
         className="h-auto w-full overflow-visible"
-        role="img"
+        role="group"
         aria-label="Constellation of twenty author voices"
       >
         <defs>
@@ -82,7 +83,7 @@ export function ConstellationMap({ authors }: { authors: Author[] }) {
           x="28"
           y="12"
           textAnchor="middle"
-          fill="#2F4A3C"
+          fill="#bac0ac"
           fontSize="2.4"
           fontFamily="monospace"
         >
@@ -103,16 +104,19 @@ export function ConstellationMap({ authors }: { authors: Author[] }) {
             key={n.slug}
             className="cursor-pointer"
             onMouseEnter={() => setActive(n.slug)}
-            onMouseLeave={() => setActive(null)}
             onFocus={() => setActive(n.slug)}
-            onBlur={() => setActive(null)}
+            onClick={() => setActive(n.slug)}
+            onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActive(n.slug); } }}
+            role="button"
+            aria-label={`Show connections for ${n.name}`}
+            aria-pressed={active === n.slug}
             tabIndex={0}
           >
             <circle
               cx={n.x}
               cy={n.y}
               r={active === n.slug ? 1.6 : 1.1}
-              fill={n.wing === "filipino" ? "#2F4A3C" : "#A8925A"}
+              fill={n.wing === "filipino" ? "#bac0ac" : "#d78b67"}
               stroke="#F4EFE6"
               strokeWidth="0.15"
             />
@@ -131,7 +135,7 @@ export function ConstellationMap({ authors }: { authors: Author[] }) {
         ))}
       </svg>
 
-      <div className="mt-8 min-h-[7rem] border border-[var(--paper)]/10 bg-[var(--charcoal)]/40 p-6 text-center backdrop-blur-sm">
+      <div className="constellation-detail mt-8 min-h-[7rem] border border-[var(--paper)]/10 bg-[var(--charcoal)]/40 p-6 text-center backdrop-blur-sm" aria-live="polite">
         {selected ? (
           <>
             <p className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.3em] text-[var(--gold)]">
@@ -152,8 +156,7 @@ export function ConstellationMap({ authors }: { authors: Author[] }) {
           </>
         ) : (
           <p className="font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/50">
-            Hover or focus a star — twenty voices, one sky. Gold lines bridge
-            labor, nation, myth, and stage across wings.
+            Select a voice above or explore a star. The lines suggest thematic connections across the two collections, rather than documented personal relationships.
           </p>
         )}
       </div>

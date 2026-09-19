@@ -12,7 +12,7 @@ export default function ConstellationPage() {
   const authors = getAllAuthors();
 
   return (
-    <div className="relative z-10 pt-28">
+    <div className="constellation-page relative z-10 pt-28">
       <header className="mx-auto max-w-3xl px-6 text-center">
         <p className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]">
           20 voices
@@ -21,9 +21,7 @@ export default function ConstellationPage() {
           Constellation
         </h1>
         <p className="mt-6 font-[family-name:var(--font-inter)] text-sm leading-relaxed text-[var(--paper)]/65 md:text-base">
-          A summary sky of the museum: Filipino wing left, world wing right —
-          lines of affinity between labor and myth, island and empire, page and
-          stage.
+          No story exists alone. Trace the shared themes that connect these twenty voices—across islands, continents, and imagined worlds.
         </p>
       </header>
       <div className="mt-12 px-4 md:px-8">

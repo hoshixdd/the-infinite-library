@@ -11,7 +11,6 @@ export function Progress() {
 
   useEffect(() => {
     if (!isAuthorPage) {
-      setProgress(0);
       return;
     }
     const onScroll = () => {
@@ -19,9 +18,9 @@ export function Progress() {
       const max = el.scrollHeight - el.clientHeight;
       setProgress(max > 0 ? (el.scrollTop / max) * 100 : 0);
     };
-    onScroll();
+    const frame = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); };
   }, [isAuthorPage, pathname]);
 
   if (!isAuthorPage) return null;

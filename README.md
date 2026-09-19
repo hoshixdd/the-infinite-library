@@ -1,6 +1,6 @@
 # THE INFINITE LIBRARY
 
-A cinematic Next.js literary museum — **20 authors / 20 voices / one literary journey** — spanning Filipino and world literature. Scroll acts as the camera; a persistent WebGL atmosphere sits behind editorial galleries.
+A cinematic Next.js literary museum — **20 authors / 20 voices / one literary journey** — spanning Filipino and world literature. Editorial storytelling, interactive book editions, and searchable portrait galleries connect the collection.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm start       # serve production build
 ## Stack
 
 - **Next.js** (App Router) + TypeScript + Tailwind CSS
-- **GSAP** + ScrollTrigger (scroll-as-camera; no `prefers-reduced-motion` gate)
+- **GSAP** + ScrollTrigger (editorial reveals and reduced-motion support)
 - **React Three Fiber** + Drei + Three.js (persistent museum atmosphere)
 - Content as JSON under `content/`
 
@@ -43,11 +43,11 @@ npm start       # serve production build
 
 | Path | Purpose |
 |------|---------|
-| `/` | Prologue → Entrance → Lobby → Closing |
+| `/` | Reading table → Introduction → Collections → Searchable voices → Closing |
 | `/filipino` | Wing intro + author index |
-| `/filipino/[slug]` | Author exhibition (chapters A–H) + room motifs |
+| `/filipino/[slug]` | Author exhibition: portrait, life, expandable works, voice, legacy, and sources |
 | `/international` | Wing intro + author index |
-| `/international/[slug]` | Author exhibition (chapters A–H) + room motifs |
+| `/international/[slug]` | Author exhibition: portrait, life, expandable works, voice, legacy, and sources |
 | `/constellation` | 20-voice constellation map + closing sequence |
 | `/archive` | Research sources + portrait credits |
 
@@ -88,11 +88,11 @@ See Archive → Portrait credits.
 ## Motion / rooms / mobile
 
 - MAX cinematic intent (Alche-class philosophy, original visuals).
-- **No** `prefers-reduced-motion` media query by design.
+- Reduced-motion preferences disable homepage choreography, route curtains, chapter scroll motion, and the WebGL atmosphere.
 - GSAP ScrollTrigger: weighted scrub, depth parallax (`data-depth`), magnetic hover on portraits/works/lobby cards.
-- Per-author `AuthorRoomMotif` + next/prev transition wipe from `transitions.json`.
-- Persistent R3F atmosphere (simplified / lower DPR on mobile).
-- Custom spotlight cursor on fine pointers / desktop only.
+- Portrait-led author exhibitions with active chapter navigation, expandable works, direct research sources, and a next-author handoff.
+- R3F atmosphere is loaded only for the constellation, and skipped under reduced motion.
+- Native cursor, visible keyboard focus, skip link, and collapsible mobile navigation.
 - Mobile: stacked editorial composition, touch-friendly nav, no custom cursor conflict.
 - Tolkien / Rowling / Saint-Exupéry: avoid film, Hogwarts/movie, and copyrighted Little Prince art.
 

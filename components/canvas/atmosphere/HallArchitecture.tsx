@@ -1,6 +1,5 @@
 "use client";
 
-import * as THREE from "three";
 
 const WOOD = "#5C4033";
 const WOOD_DARK = "#3B2A1F";

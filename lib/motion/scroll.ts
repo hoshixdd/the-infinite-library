@@ -34,7 +34,7 @@ function refreshSoon() {
 /** Home journey: scroll-as-camera — approach, inhabit, pull through */
 export function initScrollCamera(container: HTMLElement | null) {
   registerGsapPlugins();
-  if (!container) return () => {};
+  if (!container || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return () => {};
 
   document.documentElement.style.scrollBehavior = "auto";
 
@@ -102,7 +102,7 @@ export function initScrollCamera(container: HTMLElement | null) {
 /** Author chapters: approach → reveal → inhabit */
 export function initChapterScroll(container: HTMLElement | null) {
   registerGsapPlugins();
-  if (!container) return () => {};
+  if (!container || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return () => {};
 
   document.documentElement.style.scrollBehavior = "auto";
 
@@ -172,7 +172,7 @@ export function magneticMove(
   e: { clientX: number; clientY: number },
   strength = 0.08
 ) {
-  if (window.matchMedia("(pointer: coarse)").matches) return;
+  if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
   const rect = el.getBoundingClientRect();
   const x = e.clientX - rect.left - rect.width / 2;
   const y = e.clientY - rect.top - rect.height / 2;

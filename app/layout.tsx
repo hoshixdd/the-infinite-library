@@ -3,9 +3,9 @@ import { Cormorant_Garamond, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import "./museum-chrome.css";
 import "./scroll-stability.css";
+import "./editorial.css";
 import { Nav } from "@/components/shell/Nav";
 import { Progress } from "@/components/shell/Progress";
-import { CustomCursor } from "@/components/shell/CustomCursor";
 import { MuseumCanvasMount } from "@/components/canvas/MuseumCanvasMount";
 import { TransitionWipe } from "@/components/rooms/TransitionWipe";
 import { PageMorph } from "@/components/motion/PageMorph";
@@ -58,8 +58,8 @@ export default function RootLayout({
           <Nav />
         </div>
         <Progress />
-        <CustomCursor />
-        <main className="relative z-10 flex-1">{children}</main>
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <main id="main-content" className="relative z-10 flex-1">{children}</main>
       </body>
     </html>
   );

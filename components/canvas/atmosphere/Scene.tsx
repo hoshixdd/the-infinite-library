@@ -113,9 +113,10 @@ export function Atmosphere({ mobile = false }: { mobile?: boolean }) {
     const geo = new THREE.BufferGeometry();
     const arr = new Float32Array(dustCount * 3);
     for (let i = 0; i < dustCount; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 1] = Math.random() * 5 - 1.2;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 18 - 2;
+      // Deterministic distribution keeps particles stable across renders.
+      arr[i * 3] = (((i * 0.61803398875) % 1) - 0.5) * 10;
+      arr[i * 3 + 1] = ((i * 0.41421356237) % 1) * 5 - 1.2;
+      arr[i * 3 + 2] = (((i * 0.73205080757) % 1) - 0.5) * 18 - 2;
     }
     geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
     return geo;
