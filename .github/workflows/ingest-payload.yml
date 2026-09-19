@@ -3,7 +3,11 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "ops/payload.b64"
+      - "ops/payload.part00.b64"
+      - "ops/payload.part01.b64"
+      - "ops/payload.part02.b64"
+      - "ops/payload.part03.b64"
+      - "ops/payload.parts"
 jobs:
   unpack:
     runs-on: ubuntu-latest
@@ -14,18 +18,23 @@ jobs:
       - name: Unpack and commit
         run: |
           set -euo pipefail
-          if [ ! -f ops/payload.b64 ]; then echo "no payload"; exit 0; fi
-          base64 -d ops/payload.b64 > /tmp/payload.tgz
+          if [ ! -f ops/payload.parts ]; then echo no-payload; exit 0; fi
+          N=$(cat ops/payload.parts)
+          : > /tmp/payload.b64
+          i=0
+          while [ "$i" -lt "$N" ]; do
+            PART=$(printf ops/payload.part%02d.b64 "$i")
+            cat "$PART" >> /tmp/payload.b64
+            i=$((i+1))
+          done
+          base64 -d /tmp/payload.b64 > /tmp/payload.tgz
           mkdir -p /tmp/unpack
           tar -xzf /tmp/payload.tgz -C /tmp/unpack
-          rsync -a --exclude '.git' --exclude '.github/workflows/ingest-payload.yml' /tmp/unpack/ ./
-          rm -f ops/payload.b64
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rsync -a --exclude .git --exclude .github/workflows/ingest-payload.yml /tmp/unpack/ ./
+          rm -f ops/payload.part*.b64 ops/payload.parts ops/payload.b64
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
+          if git diff --cached --quiet; then echo No-changes; exit 0; fi
           git commit -m "feat: ship items 1-7 (portraits, research, motion, rooms, lobby, mobile, constellation)"
           git push
