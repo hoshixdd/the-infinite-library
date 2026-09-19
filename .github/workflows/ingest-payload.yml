@@ -1,0 +1,31 @@
+name: Ingest payload
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ops/payload.b64"
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack and commit
+        run: |
+          set -euo pipefail
+          if [ ! -f ops/payload.b64 ]; then echo "no payload"; exit 0; fi
+          base64 -d ops/payload.b64 > /tmp/payload.tgz
+          mkdir -p /tmp/unpack
+          tar -xzf /tmp/payload.tgz -C /tmp/unpack
+          rsync -a --exclude '.git' --exclude '.github/workflows/ingest-payload.yml' /tmp/unpack/ ./
+          rm -f ops/payload.b64
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "feat: ship items 1-7 (portraits, research, motion, rooms, lobby, mobile, constellation)"
+          git push
