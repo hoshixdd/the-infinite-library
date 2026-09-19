@@ -55,7 +55,7 @@ export default function RootLayout({
         <div className="pointer-events-auto"><Nav /></div>
         <Progress />
         <CustomCursor />
-        <main className="pointer-events-none relative z-10 flex-1">{children}</main>
+        <main className="relative z-10 flex-1">{children}</main>
       </body>
     </html>
   );

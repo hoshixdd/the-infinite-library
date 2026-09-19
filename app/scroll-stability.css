@@ -35,3 +35,24 @@ html[data-scroll-behavior="smooth"] {
 [data-chapter] .hit-target {
   pointer-events: auto;
 }
+
+
+/* Author exhibition pages: restore full click/scroll interaction */
+[data-author-room] {
+  pointer-events: auto !important;
+}
+[data-author-room] [data-chapter],
+[data-author-room] [data-scroll-section] {
+  pointer-events: auto !important;
+}
+[data-author-room] a,
+[data-author-room] button,
+[data-author-room] [data-reveal],
+[data-author-room] [data-approach],
+[data-author-room] [data-depth],
+[data-author-room] .gallery-frame,
+[data-author-room] .work-card,
+[data-author-room] img {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
