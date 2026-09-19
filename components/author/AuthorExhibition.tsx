@@ -7,6 +7,10 @@ import type { Author } from "@/lib/authors/types";
 import { initChapterScroll, magneticMove, magneticReset } from "@/lib/motion/scroll";
 import { getAdjacentAuthors, getTransition } from "@/lib/authors/loaders";
 import { AuthorRoomMotif } from "@/components/rooms/AuthorRoomMotif";
+import { GalleryFrame } from "@/components/museum/GalleryFrame";
+import { ExhibitPlinth } from "@/components/museum/ExhibitPlinth";
+import { FilmMask } from "@/components/museum/FilmMask";
+import { LightShaft } from "@/components/museum/LightShaft";
 
 const CHAPTERS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 
@@ -15,13 +19,19 @@ export function AuthorExhibition({ author }: { author: Author }) {
   const portraitRef = useRef<HTMLDivElement>(null);
   const transition = getTransition(author.slug);
   const { prev, next } = getAdjacentAuthors(author.wing, author.slug);
+  const warm = author.wing === "filipino";
 
   useEffect(() => {
     return initChapterScroll(ref.current);
   }, [author.slug]);
 
   return (
-    <div ref={ref} className="relative z-10" data-author-room={author.slug}>
+    <div
+      ref={ref}
+      className={`relative z-10 ${warm ? "wing-warm" : "wing-cool"}`}
+      data-author-room={author.slug}
+    >
+      <FilmMask intensity={0.4} />
       <AuthorRoomMotif author={author} />
 
       {/* A — Arrival */}
@@ -29,6 +39,15 @@ export function AuthorExhibition({ author }: { author: Author }) {
         data-chapter="A"
         className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-24 text-center md:min-h-screen"
       >
+        <LightShaft warm={warm} className="opacity-60" />
+        <div
+          data-reveal
+          className="gallery-wall-label mb-6 text-left"
+        >
+          <span className="font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Gallery bay · {author.wing === "filipino" ? "Filipino wing" : "World wing"}
+          </span>
+        </div>
         <span
           data-reveal
           className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
@@ -77,7 +96,8 @@ export function AuthorExhibition({ author }: { author: Author }) {
           ref={portraitRef}
           data-reveal
           data-depth
-          className="portrait-frame relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-[var(--gold)]/25"
+          data-approach
+          className="w-full max-w-xs"
           onMouseMove={(e) => {
             if (portraitRef.current) magneticMove(portraitRef.current, e, 0.05);
           }}
@@ -85,14 +105,21 @@ export function AuthorExhibition({ author }: { author: Author }) {
             if (portraitRef.current) magneticReset(portraitRef.current);
           }}
         >
-          <Image
-            src={author.portrait.src}
-            alt={author.portrait.alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 90vw, 320px"
-            priority
-          />
+          <GalleryFrame
+            label="Wall label · Portrait plate"
+            caption={author.portrait.credit}
+          >
+            <div className="portrait-frame relative aspect-[4/5] w-full">
+              <Image
+                src={author.portrait.src}
+                alt={author.portrait.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 90vw, 320px"
+                priority
+              />
+            </div>
+          </GalleryFrame>
         </div>
         <div className="max-w-md mobile-stack">
           <span
@@ -101,12 +128,6 @@ export function AuthorExhibition({ author }: { author: Author }) {
           >
             Chapter B · Portrait
           </span>
-          <p
-            data-reveal
-            className="mt-4 font-[family-name:var(--font-inter)] text-xs leading-relaxed text-[var(--paper)]/45"
-          >
-            {author.portrait.credit}
-          </p>
           {author.portrait.sourceUrl && (
             <a
               data-reveal
@@ -136,6 +157,11 @@ export function AuthorExhibition({ author }: { author: Author }) {
         data-chapter="C"
         className="relative flex min-h-[100svh] flex-col justify-center px-6 py-24 md:min-h-screen md:px-16 lg:px-28"
       >
+        <div className="gallery-wall-label mb-4" data-reveal>
+          <span className="font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.28em] text-[var(--gold)]">
+            Wall text · Biography
+          </span>
+        </div>
         <span
           data-reveal
           className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
@@ -156,29 +182,19 @@ export function AuthorExhibition({ author }: { author: Author }) {
           data-reveal
           className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
         >
-          Chapter D · Works
+          Chapter D · Works on plinth
         </span>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {author.works.map((work) => (
-            <article
+        <div className="mt-12 grid gap-10 md:grid-cols-3">
+          {author.works.map((work, i) => (
+            <div
               key={work.title}
-              data-reveal
-              className="work-card border border-[var(--paper)]/10 bg-[var(--charcoal)]/50 p-6"
               onMouseMove={(e) => magneticMove(e.currentTarget, e, 0.04)}
               onMouseLeave={(e) => magneticReset(e.currentTarget)}
             >
-              <h3 className="font-[family-name:var(--font-cormorant)] text-2xl text-[var(--ivory)]">
-                {work.title}
-              </h3>
-              {work.year && (
-                <p className="mt-1 font-[family-name:var(--font-ibm)] text-[10px] text-[var(--gold)]/80">
-                  {work.year}
-                </p>
-              )}
-              <p className="mt-4 font-[family-name:var(--font-inter)] text-sm leading-relaxed text-[var(--paper)]/65">
+              <ExhibitPlinth title={work.title} year={work.year} index={i}>
                 {work.blurb}
-              </p>
-            </article>
+              </ExhibitPlinth>
+            </div>
           ))}
         </div>
       </section>
@@ -188,6 +204,7 @@ export function AuthorExhibition({ author }: { author: Author }) {
         data-chapter="E"
         className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 text-center md:min-h-screen"
       >
+        <LightShaft warm={warm} className="opacity-40" />
         <span
           data-reveal
           className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--gold)]"
@@ -197,7 +214,8 @@ export function AuthorExhibition({ author }: { author: Author }) {
         <blockquote
           data-reveal
           data-depth
-          className="mt-10 max-w-3xl font-[family-name:var(--font-cormorant)] text-3xl italic leading-snug text-[var(--ivory)] md:text-5xl"
+          data-approach
+          className="mt-10 max-w-3xl border border-[var(--gold)]/20 bg-[var(--charcoal)]/30 px-8 py-10 font-[family-name:var(--font-cormorant)] text-3xl italic leading-snug text-[var(--ivory)] backdrop-blur-[1px] md:px-14 md:text-5xl"
         >
           &ldquo;{author.quote}&rdquo;
         </blockquote>
@@ -222,12 +240,12 @@ export function AuthorExhibition({ author }: { author: Author }) {
             {author.significance}
           </p>
         </div>
-        <div className="flex-1 border-l border-[var(--gold)]/20 pl-8">
+        <div className="flex-1 border-l-2 border-[var(--gold)]/25 bg-[var(--charcoal)]/25 pl-8 pr-4 py-6">
           <span
             data-reveal
             className="font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.4em] text-[var(--filipino-red)]"
           >
-            Fact
+            Archival fact
           </span>
           <p
             data-reveal
