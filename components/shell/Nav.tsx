@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/", label: "Home" },
   { href: "/filipino", label: "Filipino" },
-  { href: "/international", label: "International" },
+  { href: "/international", label: "World" },
+  { href: "/constellation", label: "Constellation" },
   { href: "/archive", label: "Archive" },
 ];
 
@@ -15,19 +16,19 @@ export function Nav() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-4 md:px-8"
+      className="touch-nav fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-3 px-4 py-4 md:px-8"
       style={{
         background:
-          "linear-gradient(to bottom, rgba(9,9,9,0.85), rgba(9,9,9,0))",
+          "linear-gradient(to bottom, rgba(9,9,9,0.9), rgba(9,9,9,0))",
       }}
     >
       <Link
         href="/"
-        className="font-[family-name:var(--font-cormorant)] text-sm tracking-[0.25em] text-[var(--paper)] uppercase md:text-base"
+        className="shrink-0 font-[family-name:var(--font-cormorant)] text-sm tracking-[0.2em] text-[var(--paper)] uppercase md:text-base md:tracking-[0.25em]"
       >
         The Infinite Library
       </Link>
-      <ul className="flex items-center gap-4 md:gap-7">
+      <ul className="flex max-w-[60%] flex-wrap items-center justify-end gap-x-3 gap-y-2 md:max-w-none md:gap-7">
         {links.map((link) => {
           const active =
             link.href === "/"
@@ -37,7 +38,7 @@ export function Nav() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.2em] transition-colors md:text-xs ${
+                className={`font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.18em] transition-colors md:text-xs md:tracking-[0.2em] ${
                   active
                     ? "text-[var(--gold)]"
                     : "text-[var(--paper)]/60 hover:text-[var(--paper)]"
