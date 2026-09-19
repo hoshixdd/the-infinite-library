@@ -4,11 +4,39 @@ import { gsap, ScrollTrigger, registerGsapPlugins } from "./gsap";
 
 const EASE = "power3.out";
 const FILM = "expo.out";
+const SCRUB = 0.65;
+
+function ensureLightVeil(section: HTMLElement): HTMLElement {
+  let veil = section.querySelector<HTMLElement>("[data-light-veil]");
+  if (!veil) {
+    const cs = getComputedStyle(section);
+    if (cs.position === "static") {
+      section.style.position = "relative";
+    }
+    veil = document.createElement("div");
+    veil.setAttribute("data-light-veil", "");
+    veil.setAttribute("aria-hidden", "true");
+    section.prepend(veil);
+  }
+  return veil;
+}
+
+function refreshSoon() {
+  requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+  });
+  if (typeof document !== "undefined" && "fonts" in document) {
+    void document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }
+  window.setTimeout(() => ScrollTrigger.refresh(), 400);
+}
 
 /** Home journey: scroll-as-camera — approach, inhabit, pull through */
 export function initScrollCamera(container: HTMLElement | null) {
   registerGsapPlugins();
   if (!container) return () => {};
+
+  document.documentElement.style.scrollBehavior = "auto";
 
   const sections = container.querySelectorAll<HTMLElement>("[data-scroll-section]");
   const ctx = gsap.context(() => {
@@ -16,47 +44,27 @@ export function initScrollCamera(container: HTMLElement | null) {
       const reveals = section.querySelectorAll("[data-reveal]");
       const isPrologue = i === 0 || section.hasAttribute("data-prologue");
 
-      // Prologue stays readable immediately — never scrub-hide entry CTAs
       if (isPrologue) {
-        gsap.set(reveals, { opacity: 1, y: 0, scale: 1, clearProps: "filter" });
+        gsap.set(reveals, { opacity: 1, y: 0, scale: 1, clearProps: "filter,clipPath" });
       } else if (reveals.length) {
-        // Motion without blur filters (blur is expensive / can strand UI unreadable)
         gsap.fromTo(
           reveals,
+          { opacity: 0.72, y: 56, scale: 0.94 },
           {
-            opacity: 0.85,
-            y: 36,
-            scale: 0.98,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            ease: EASE,
-            stagger: 0.06,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 88%",
-              toggleActions: "play none none reverse",
-            },
+            opacity: 1, y: 0, scale: 1, ease: EASE, stagger: 0.08, overwrite: "auto",
+            scrollTrigger: { trigger: section, start: "top 88%", toggleActions: "play none none reverse" },
           }
         );
       }
 
-      // Soft brightness only on later sections (skip prologue)
       if (!isPrologue) {
+        const veil = ensureLightVeil(section);
         gsap.fromTo(
-          section,
-          { filter: "brightness(0.88) saturate(0.95)" },
+          veil,
+          { autoAlpha: 0.32 },
           {
-            filter: "brightness(1) saturate(1)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "center center",
-              scrub: 1.1,
-            },
+            autoAlpha: 0, ease: "none", overwrite: "auto",
+            scrollTrigger: { trigger: section, start: "top bottom", end: "center center", scrub: SCRUB },
           }
         );
       }
@@ -65,17 +73,10 @@ export function initScrollCamera(container: HTMLElement | null) {
       if (depth.length) {
         gsap.fromTo(
           depth,
-          { y: 36, scale: 1.02 },
+          { y: 52, scale: 1.06 },
           {
-            y: -20,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
+            y: -36, scale: 1, ease: "none", overwrite: "auto",
+            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: SCRUB },
           }
         );
       }
@@ -84,30 +85,26 @@ export function initScrollCamera(container: HTMLElement | null) {
       if (mask.length) {
         gsap.fromTo(
           mask,
-          { clipPath: "inset(6% 10% 6% 10%)", scale: 1.04 },
+          { scale: 1.1, opacity: 0.82, y: 28 },
           {
-            clipPath: "inset(0% 0% 0% 0%)",
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "center center",
-              scrub: 1.05,
-            },
+            scale: 1, opacity: 1, y: 0, ease: "none", overwrite: "auto",
+            scrollTrigger: { trigger: section, start: "top 85%", end: "center center", scrub: SCRUB },
           }
         );
       }
     });
   }, container);
 
-  return () => ctx.revert();
+  refreshSoon();
+  return () => { ctx.revert(); };
 }
 
-/** Author chapters: approach → reveal → inhabit (cinematic, not slides) */
+/** Author chapters: approach → reveal → inhabit */
 export function initChapterScroll(container: HTMLElement | null) {
   registerGsapPlugins();
   if (!container) return () => {};
+
+  document.documentElement.style.scrollBehavior = "auto";
 
   const chapters = container.querySelectorAll<HTMLElement>("[data-chapter]");
   const ctx = gsap.context(() => {
@@ -117,22 +114,10 @@ export function initChapterScroll(container: HTMLElement | null) {
       if (reveal.length) {
         gsap.fromTo(
           reveal,
+          { opacity: 0.7, y: 64, scale: 0.94 },
           {
-            opacity: 0.88,
-            y: 40,
-            scale: 0.98,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            ease: EASE,
-            stagger: 0.07,
-            scrollTrigger: {
-              trigger: chapter,
-              start: "top 82%",
-              toggleActions: "play none none reverse",
-            },
+            opacity: 1, y: 0, scale: 1, ease: EASE, stagger: 0.09, overwrite: "auto", immediateRender: false,
+            scrollTrigger: { trigger: chapter, start: "top 82%", toggleActions: "play none none reverse" },
           }
         );
       }
@@ -141,20 +126,12 @@ export function initChapterScroll(container: HTMLElement | null) {
       if (approach.length) {
         gsap.fromTo(
           approach,
+          { scale: 0.86, opacity: 0.65, y: 48 },
           {
-            scale: 0.9,
-            opacity: 0.75,
-            clipPath: "inset(4% 6% 4% 6%)",
-          },
-          {
-            scale: 1,
-            opacity: 1,
-            clipPath: "inset(0% 0% 0% 0%)",
-            ease: EASE,
+            scale: 1, opacity: 1, y: 0, ease: EASE, overwrite: "auto", immediateRender: false,
             scrollTrigger: {
-              trigger: chapter,
-              start: "top 88%",
-              toggleActions: "play none none reverse",
+              trigger: chapter, start: "top 88%", toggleActions: "play none none reverse",
+              onLeaveBack: () => { gsap.set(approach, { clearProps: "clipPath" }); },
             },
           }
         );
@@ -164,40 +141,30 @@ export function initChapterScroll(container: HTMLElement | null) {
       if (depth.length) {
         gsap.fromTo(
           depth,
-          { y: 32 },
+          { y: 48 },
           {
-            y: -24,
-            ease: "none",
-            scrollTrigger: {
-              trigger: chapter,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
+            y: -40, ease: "none", overwrite: "auto",
+            scrollTrigger: { trigger: chapter, start: "top bottom", end: "bottom top", scrub: SCRUB },
           }
         );
       }
 
-      gsap.fromTo(
-        chapter,
-        { filter: idx === 0 ? "brightness(1)" : "brightness(0.9)" },
-        {
-          filter: "brightness(1)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: chapter,
-            start: "top bottom",
-            end: "center center",
-            scrub: true,
-          },
-        }
-      );
+      if (idx > 0) {
+        const veil = ensureLightVeil(chapter);
+        gsap.fromTo(
+          veil,
+          { autoAlpha: 0.28 },
+          {
+            autoAlpha: 0, ease: "none", overwrite: "auto",
+            scrollTrigger: { trigger: chapter, start: "top bottom", end: "center center", scrub: SCRUB },
+          }
+        );
+      }
     });
   }, container);
 
-  return () => {
-    ctx.revert();
-  };
+  refreshSoon();
+  return () => { ctx.revert(); };
 }
 
 export function magneticMove(
@@ -209,17 +176,11 @@ export function magneticMove(
   const rect = el.getBoundingClientRect();
   const x = e.clientX - rect.left - rect.width / 2;
   const y = e.clientY - rect.top - rect.height / 2;
-  gsap.to(el, {
-    x: x * strength,
-    y: y * strength,
-    duration: 0.45,
-    ease: FILM,
-  });
+  gsap.to(el, { x: x * strength, y: y * strength, duration: 0.45, ease: FILM, overwrite: "auto" });
 }
 
 export function magneticReset(el: HTMLElement) {
-  gsap.to(el, { x: 0, y: 0, duration: 0.65, ease: EASE });
+  gsap.to(el, { x: 0, y: 0, duration: 0.65, ease: EASE, overwrite: "auto" });
 }
 
-// Keep ScrollTrigger import used (tree / plugin side-effect awareness)
 void ScrollTrigger;
