@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --void: #090909;
+  --charcoal: #1a1a1a;
+  --paper: #e8e0d4;
+  --ivory: #f4efe6;
+  --gold: #a8925a;
+  --filipino-brown: #3b2a1f;
+  --filipino-green: #2f4a3c;
+  --filipino-red: #8c2f2f;
+  --background: var(--void);
+  --foreground: var(--paper);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-void: var(--void);
+  --color-charcoal: var(--charcoal);
+  --color-paper: var(--paper);
+  --color-ivory: var(--ivory);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+  --font-mono: var(--font-ibm);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--void);
+}
+
+body {
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100vh;
+  cursor: none;
+}
+
+@media (pointer: coarse), (max-width: 767px) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 40%, transparent);
+  color: var(--ivory);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Editorial stacking on mobile */
+@media (max-width: 767px) {
+  [data-chapter],
+  [data-scroll-section] {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
