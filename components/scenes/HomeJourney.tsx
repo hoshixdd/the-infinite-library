@@ -6,6 +6,7 @@ import { Entrance } from "./Entrance";
 import { Lobby } from "./Lobby";
 import { Closing } from "./Closing";
 import { initScrollCamera } from "@/lib/motion/scroll";
+import { FilmMask } from "@/components/museum/FilmMask";
 
 export function HomeJourney() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,6 +17,7 @@ export function HomeJourney() {
 
   return (
     <div ref={ref} className="relative z-10">
+      <FilmMask intensity={0.45} />
       <Prologue />
       <Entrance />
       <Lobby />
