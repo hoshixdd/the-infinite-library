@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Museum portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#A8925A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#A8925A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <rect x="18" y="18" width="364" height="464" fill="none" stroke="#A8925A" stroke-opacity="0.35" stroke-width="2"/>
+  <rect x="28" y="28" width="344" height="444" fill="none" stroke="#E8E0D4" stroke-opacity="0.12" stroke-width="1"/>
+  <ellipse cx="200" cy="175" rx="120" ry="120" fill="url(#glow)"/>
+  <circle cx="200" cy="160" r="52" fill="#3B2A1F"/>
+  <ellipse cx="200" cy="290" rx="90" ry="110" fill="#3B2A1F"/>
+  <rect x="110" y="400" width="180" height="2" fill="#A8925A" opacity="0.5"/>
+  <text x="200" y="440" text-anchor="middle" fill="#E8E0D4" fill-opacity="0.55" font-family="Georgia, serif" font-size="14" letter-spacing="3">PORTRAIT</text>
+  <text x="200" y="460" text-anchor="middle" fill="#A8925A" fill-opacity="0.7" font-family="monospace" font-size="10" letter-spacing="2">PENDING CREDIT</text>
+</svg>
