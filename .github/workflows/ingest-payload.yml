@@ -1,10 +1,10 @@
-name: Ingest payload
+name: Ingest portraits
 on:
   workflow_dispatch:
   push:
     paths:
-      - "ops/payload.part*.b64"
-      - "ops/payload.parts"
+      - "ops/portrait-b64/*.b64"
+      - "ops/portrait-b64/READY"
 jobs:
   unpack:
     runs-on: ubuntu-latest
@@ -12,30 +12,22 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Unpack and commit
+      - name: Decode portraits and commit
         run: |
           set -euo pipefail
-          if [ ! -f ops/payload.parts ]; then echo "no payload meta"; exit 0; fi
-          N=$(cat ops/payload.parts)
-          : > /tmp/payload.b64
-          for i in $(seq 0 $((N-1))); do
-            PART=$(printf "ops/payload.part%02d.b64" "$i")
-            cat "$PART" >> /tmp/payload.b64
+          if [ ! -f ops/portrait-b64/READY ]; then echo "not ready"; exit 0; fi
+          mkdir -p public/portraits
+          for f in ops/portrait-b64/*.b64; do
+            [ -f "$f" ] || continue
+            slug=$(basename "$f" .b64)
+            base64 -d "$f" > "public/portraits/${slug}.jpg"
+            echo "wrote $slug.jpg ($(wc -c < public/portraits/${slug}.jpg) bytes)"
           done
-          base64 -d /tmp/payload.b64 > /tmp/payload.tgz
-          mkdir -p /tmp/unpack
-          tar -xzf /tmp/payload.tgz -C /tmp/unpack
-          rsync -a --exclude '.git' --exclude '.github/workflows/ingest-payload.yml' /tmp/unpack/ ./
-          rm -f ops/payload.part*.b64 ops/payload.parts ops/payload.b64
-          if [ -f content/authors/filipino.json ]; then
-            sed -i 's|/portraits/\([^\"]*\)\.svg|/portraits/\1.jpg|g' content/authors/filipino.json content/authors/international.json content/archive.json || true
-          fi
+          rm -rf ops/portrait-b64
+          sed -i 's|/portraits/\([^"]*\)\.svg|/portraits/\1.jpg|g' content/authors/filipino.json content/authors/international.json content/archive.json || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
-          git commit -m "feat: JPEG portraits + author JSON .jpg src + click/scroll fixes"
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "feat: decode JPEG portraits from base64 chunks"
           git push
