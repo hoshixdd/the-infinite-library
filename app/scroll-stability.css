@@ -1,0 +1,37 @@
+/* ScrollTrigger-safe scroll + light veil (replaces filter:brightness scrub) */
+html,
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: auto;
+}
+
+[data-light-veil] {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(26, 18, 12, 0.55) 0%,
+    rgba(12, 8, 6, 0.85) 100%
+  );
+  opacity: 0;
+}
+
+/* Hit-through for 3D canvas under sections */
+[data-scroll-section],
+[data-chapter] {
+  pointer-events: none;
+}
+[data-scroll-section] a,
+[data-scroll-section] button,
+[data-scroll-section] [data-reveal],
+[data-scroll-section] [data-magnetic],
+[data-scroll-section] .hit-target,
+[data-chapter] a,
+[data-chapter] button,
+[data-chapter] [data-reveal],
+[data-chapter] [data-approach],
+[data-chapter] [data-magnetic],
+[data-chapter] .hit-target {
+  pointer-events: auto;
+}

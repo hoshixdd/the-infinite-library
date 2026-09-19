@@ -1,25 +1,25 @@
-# Sync status (2026-09-19 Asia/Taipei ~13:05)
+# Sync status (2026-09-19 Asia/Taipei ~13:15)
 
 **Grand arched 3D hall + scroll stability**
 
-## Changes
-- Procedural CanvasTexture spine atlas (32 styles) on InstancedMesh books
-- Receding wooden arches, gallery rails, ladder, bust pedestal
-- Warm museum fog/lights; opaque book materials (no glass spines)
-- Scroll: no `filter:brightness` / unstable `clipPath`; light-veil + scale/opacity/y; scrub 0.65; ST refresh
-- Refs mood plane: `public/refs/hall-arches.png` (credit: reference mood)
+## On GitHub `main`
+- `components/canvas/atmosphere/Scene.tsx` — arches, warm fog, bust, floor, galleries
+- `HallArchitecture.tsx` — WoodenArch / GalleryRail / RollingLadder
+- `Bookshelf.tsx` + `spineAtlas.ts` — 32-cell procedural spine atlas, opaque InstancedMesh
+- `lib/motion/scroll.ts` + `gsap.ts` — light-veil (no filter), no clipPath scrub, scrub 0.65
+- `MuseumCanvas.tsx`, `Atmosphere.tsx` re-export, layout
 
-## Book counts
-- Desktop: 6×16×2 = 192
-- Mobile: 4×9×2 = 72
+## Still sync via tarball if missing on remote CDN
+- `app/globals.css` (scroll-behavior: auto + `[data-light-veil]`)
+- `app/museum-chrome.css`
+- `public/refs/*` mood references
 
-## Sync Windows
+## Windows HMR (keep `npm run dev` running)
 ```powershell
 cd C:\Users\admin\the-infinite-library
 git pull origin main
-# keep npm run dev running; soft-refresh browser
+# OR extract ops\museum-overhaul-sync\grand-hall-fix.tgz then soft-refresh browser
 ```
-Or extract `ops/museum-overhaul-sync/grand-hall-fix.tgz`
 
-## GitHub
-Pushed to `ken2025mendoza11/the-infinite-library` main.
+## Book counts
+Desktop 6×16×2 = 192 · Mobile 4×9×2 = 72
