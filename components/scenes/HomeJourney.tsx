@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Prologue } from "./Prologue";
 import { Entrance } from "./Entrance";
 import { Lobby } from "./Lobby";
+import { Closing } from "./Closing";
 import { initScrollCamera } from "@/lib/motion/scroll";
 
 export function HomeJourney() {
@@ -18,6 +19,7 @@ export function HomeJourney() {
       <Prologue />
       <Entrance />
       <Lobby />
+      <Closing />
     </div>
   );
 }
