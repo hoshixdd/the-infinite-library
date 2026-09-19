@@ -8,6 +8,7 @@ let registered = false;
 export function registerGsapPlugins() {
   if (typeof window === "undefined" || registered) return;
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
   registered = true;
 }
 
