@@ -24,12 +24,45 @@ export function getAuthorSlugs(wing: Wing): string[] {
   return getAuthorsByWing(wing).map((a) => a.slug);
 }
 
+export function getAdjacentAuthors(wing: Wing, slug: string) {
+  const list = getAuthorsByWing(wing);
+  const idx = list.findIndex((a) => a.slug === slug);
+  if (idx < 0) return { prev: undefined, next: undefined };
+  return {
+    prev: idx > 0 ? list[idx - 1] : undefined,
+    next: idx < list.length - 1 ? list[idx + 1] : undefined,
+  };
+}
+
 export function getTransition(slug: string) {
-  return (transitions as Record<string, { transitionOut: string; description: string; wing: string; name: string }>)[slug];
+  return (
+    transitions as Record<
+      string,
+      { transitionOut: string; description: string; wing: string; name: string }
+    >
+  )[slug];
 }
 
 export function getArchive() {
-  return archive;
+  return archive as {
+    title: string;
+    description: string;
+    sources: {
+      label: string;
+      url: string;
+      authors: string[];
+      wing: string;
+    }[];
+    portraitCredits?: {
+      slug: string;
+      name: string;
+      src: string;
+      credit: string;
+      sourceUrl: string;
+      treatment: string;
+    }[];
+    portraitTodos?: { slug: string; name: string; note: string }[];
+  };
 }
 
 export const wingMeta = {

@@ -26,6 +26,10 @@ export interface Author {
   fullName: string;
   birth: string;
   death: string | null;
+  bornPlace?: string;
+  diedPlace?: string | null;
+  nationality?: string;
+  occupation?: string;
   roles: string[];
   bio: string;
   works: Work[];
@@ -45,4 +49,13 @@ export interface WingMeta {
   title: string;
   subtitle: string;
   accent: string;
+}
+
+export interface PortraitCredit {
+  slug: string;
+  name: string;
+  src: string;
+  credit: string;
+  sourceUrl: string;
+  treatment: string;
 }
