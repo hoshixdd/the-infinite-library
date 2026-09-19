@@ -18,10 +18,15 @@ export function MuseumCanvas() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
       <Canvas
-        camera={{ position: [0, 0, mobile ? 10 : 8], fov: mobile ? 55 : 50 }}
-        dpr={mobile ? [1, 1.25] : [1, 1.75]}
+        camera={{
+          position: [0, 0.4, mobile ? 11 : 9],
+          fov: mobile ? 52 : 48,
+          near: 0.1,
+          far: 40,
+        }}
+        dpr={mobile ? [1, 1.2] : [1, 1.6]}
         gl={{ antialias: !mobile, alpha: true, powerPreference: "high-performance" }}
-        style={{ width: "100%", height: "100%", opacity: mobile ? 0.55 : 1 }}
+        style={{ width: "100%", height: "100%", opacity: mobile ? 0.5 : 0.95 }}
       >
         <Suspense fallback={null}>
           <Atmosphere />
