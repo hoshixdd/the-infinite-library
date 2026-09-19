@@ -27,6 +27,9 @@ jobs:
           tar -xzf /tmp/payload.tgz -C /tmp/unpack
           rsync -a --exclude '.git' --exclude '.github/workflows/ingest-payload.yml' /tmp/unpack/ ./
           rm -f ops/payload.part*.b64 ops/payload.parts ops/payload.b64
+          if [ -f content/authors/filipino.json ]; then
+            sed -i 's|/portraits/\([^\"]*\)\.svg|/portraits/\1.jpg|g' content/authors/filipino.json content/authors/international.json content/archive.json || true
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
