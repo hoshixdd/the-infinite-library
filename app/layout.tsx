@@ -45,15 +45,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${inter.variable} ${ibm.variable} h-full antialiased`}
     >
       <body className="relative min-h-full">
         <MuseumCanvasMount />
         <TransitionWipe />
-        <Nav />
+        <div className="pointer-events-auto"><Nav /></div>
         <Progress />
         <CustomCursor />
-        <main className="relative z-10 flex-1">{children}</main>
+        <main className="pointer-events-none relative z-10 flex-1">{children}</main>
       </body>
     </html>
   );
