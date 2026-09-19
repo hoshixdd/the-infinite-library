@@ -2,18 +2,39 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerGsapPlugins } from "@/lib/motion/gsap";
+import { LightShaft } from "@/components/museum/LightShaft";
+import { ShelfBackdrop } from "@/components/museum/ShelfBackdrop";
 
 export function Prologue() {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     registerGsapPlugins();
-    if (!titleRef.current) return;
+    if (!titleRef.current || !stageRef.current) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
+        stageRef.current,
+        { clipPath: "inset(48% 42% 48% 42%)", filter: "brightness(0.15)" },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          filter: "brightness(1)",
+          duration: 2.6,
+          ease: "power3.inOut",
+        }
+      );
+      gsap.fromTo(
         titleRef.current,
-        { opacity: 0, letterSpacing: "0.4em", y: 30 },
-        { opacity: 1, letterSpacing: "0.08em", y: 0, duration: 2.2, ease: "power3.out" }
+        { opacity: 0, letterSpacing: "0.45em", y: 40, scale: 0.96 },
+        {
+          opacity: 1,
+          letterSpacing: "0.08em",
+          y: 0,
+          scale: 1,
+          duration: 2.4,
+          delay: 0.55,
+          ease: "power3.out",
+        }
       );
     });
     return () => ctx.revert();
@@ -31,7 +52,14 @@ export function Prologue() {
       data-scroll-section
       className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(168,146,90,0.12),transparent_60%)]" />
+      <div ref={stageRef} className="absolute inset-0 -z-10 overflow-hidden">
+        <ShelfBackdrop density={16} className="opacity-40 md:opacity-60" />
+        <LightShaft warm />
+        <div className="library-arch-paper absolute inset-0" />
+        <div className="pointer-events-none absolute inset-x-[8%] top-[12%] bottom-[18%] border border-[var(--gold)]/15 md:inset-x-[18%]" />
+        <div className="pointer-events-none absolute inset-x-[10%] top-[14%] bottom-[20%] border border-[var(--paper)]/5 md:inset-x-[20%]" />
+      </div>
+
       <p
         data-reveal
         className="mb-8 font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-[0.45em] text-[var(--gold)] md:text-xs"
@@ -51,8 +79,8 @@ export function Prologue() {
         data-reveal
         className="mt-8 max-w-md font-[family-name:var(--font-inter)] text-sm leading-relaxed text-[var(--paper)]/70 md:text-base"
       >
-        A cinematic museum of letters—Filipino and world literature in scroll,
-        light, and atmosphere.
+        A dark archive opens into the stacks—Filipino and world literature in
+        scroll, light, and museum air.
       </p>
       <button
         data-reveal
@@ -66,7 +94,7 @@ export function Prologue() {
         data-reveal
         className="anim-float mt-16 font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.4em] text-[var(--paper)]/35"
       >
-        Scroll to descend
+        Scroll into the stacks
       </div>
     </section>
   );
