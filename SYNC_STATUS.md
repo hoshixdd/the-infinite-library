@@ -1,17 +1,32 @@
-# Sync status (2026-09-19 Asia/Taipei)
+# Sync status (2026-09-19 Asia/Taipei ~12:50)
 
-**Status: MUSEUM UI OVERHAUL** — library/museum film experience (not space starfield).
+**URGENT unblock + interactive InstancedMesh library 3D**
 
-## Visual overhaul committed
+## Pushed to GitHub `main`
 
-1. `components/canvas/Atmosphere.tsx` — library hall
-2. `components/museum/*` — ShelfBackdrop, GalleryFrame, ExhibitPlinth, FilmMask, LightShaft
-3. Film-flow scroll + iris/wipe TransitionWipe
-4. Author gallery chrome
-5. Prologue as dark archive into stacks
-6. globals.css museum textures
+| Area | Status |
+|------|--------|
+| Prologue (no closed clip) | pushed |
+| scroll.ts (no blur / prologue readable) | pushed |
+| layout (pointer-events + data-scroll-behavior) | pushed |
+| MuseumCanvas (ErrorBoundary, dpr, wheel, home pointer-events) | pushed |
+| Atmosphere InstancedMesh + Scene/Bookshelf | pushed |
+| museum-chrome hit-through / cursor | pushed |
 
-## Notes
+## Box mirror
 
-- `npm run build` succeeds (Next.js 16.3.5).
-- Parent should sync Windows from GitHub for Turbopack HMR.
+`/workspace/the-infinite-library` — `npm run build` OK.
+
+## Windows HMR
+
+1. `git pull origin main` in `C:\Users\admin\the-infinite-library` **without killing** `npm run dev`
+2. Or extract `ops/museum-overhaul-sync/interactive-3d-fix.tgz` then run `APPLY-INTERACTIVE-3D.ps1`
+3. Soft-refresh browser
+
+## How to interact with 3D
+
+- Move mouse: aisle parallax
+- Hover book spines (margins around title): highlight / scale
+- Click a book: pulse
+- Enter the Gallery CTA always clickable
+- Empty areas hit canvas; text/buttons stay clickable
