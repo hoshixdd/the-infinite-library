@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 
 export default function ArchivePage() {
   const archive = getArchive();
+  const credits = archive.portraitCredits ?? [];
 
   return (
     <section className="relative z-10 mx-auto max-w-3xl px-6 pb-32 pt-28">
@@ -42,15 +43,31 @@ export default function ArchivePage() {
       </ul>
 
       <h2 className="mt-20 font-[family-name:var(--font-cormorant)] text-2xl text-[var(--ivory)]">
-        Portrait TODOs
+        Portrait credits
       </h2>
-      <ul className="mt-6 space-y-2">
-        {archive.portraitTodos.map((todo) => (
+      <p className="mt-3 font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/55">
+        All portraits currently ship as original illustrative museum plates.
+        Credits link to Wikimedia Commons categories or institutional pages —
+        never claiming photographic rights we do not hold.
+      </p>
+      <ul className="mt-6 space-y-4">
+        {credits.map((c) => (
           <li
-            key={todo.slug}
-            className="font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/55"
+            key={c.slug}
+            className="border-b border-[var(--paper)]/10 pb-4 font-[family-name:var(--font-inter)] text-sm text-[var(--paper)]/65"
           >
-            <span className="text-[var(--gold)]">{todo.name}</span> — {todo.note}
+            <span className="text-[var(--gold)]">{c.name}</span>
+            <span className="mt-1 block text-xs text-[var(--paper)]/45">{c.credit}</span>
+            {c.sourceUrl && (
+              <a
+                href={c.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block font-[family-name:var(--font-ibm)] text-[10px] uppercase tracking-wider text-[var(--gold)]/80 hover:underline"
+              >
+                Source
+              </a>
+            )}
           </li>
         ))}
       </ul>
