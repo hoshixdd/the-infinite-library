@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { LightShaft } from "@/components/museum/LightShaft";
 
 export function Closing() {
   return (
@@ -9,6 +10,7 @@ export function Closing() {
       data-scroll-section
       className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 py-32 text-center"
     >
+      <LightShaft warm className="opacity-40" />
       <p
         data-reveal
         className="max-w-2xl font-[family-name:var(--font-cormorant)] text-2xl leading-relaxed text-[var(--ivory)] md:text-4xl"

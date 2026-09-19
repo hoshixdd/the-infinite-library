@@ -13,8 +13,17 @@ export function AuthorIndex({
   authors: Author[];
   wing: Wing;
 }) {
+  const warm = wing === "filipino";
+
   return (
-    <section className="relative z-10 mx-auto max-w-5xl px-6 pb-32 pt-8">
+    <section
+      className={`relative z-10 mx-auto max-w-5xl px-6 pb-32 pt-8 ${
+        warm ? "wing-warm" : "wing-cool"
+      }`}
+    >
+      <p className="mb-8 font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-[0.35em] text-[var(--gold)]/70">
+        Gallery directory · {authors.length} bays
+      </p>
       <ol className="space-y-1">
         {authors.map((author) => (
           <AuthorRow key={author.slug} author={author} wing={wing} />
@@ -41,24 +50,31 @@ function AuthorRow({ author, wing }: { author: Author; wing: Wing }) {
         className="group flex items-center justify-between gap-4 border-b border-[var(--paper)]/10 py-5 transition hover:border-[var(--gold)]/40"
       >
         <span className="flex items-center gap-4 md:gap-8">
-          <span className="relative hidden h-12 w-10 overflow-hidden border border-[var(--paper)]/10 sm:block">
-            <Image
-              src={author.portrait.src}
-              alt=""
-              fill
-              className="object-cover opacity-80 transition group-hover:opacity-100"
-              sizes="40px"
-            />
+          <span className="gallery-frame__mat relative hidden h-14 w-11 overflow-hidden p-[3px] sm:block">
+            <span className="relative block h-full w-full overflow-hidden">
+              <Image
+                src={author.portrait.src}
+                alt=""
+                fill
+                className="object-cover opacity-80 transition group-hover:opacity-100 group-hover:scale-105"
+                sizes="44px"
+              />
+            </span>
           </span>
           <span className="font-[family-name:var(--font-ibm)] text-[10px] text-[var(--gold)]/70">
-            {String(author.order).padStart(2, "0")}
+            Bay {String(author.order).padStart(2, "0")}
           </span>
           <span className="font-[family-name:var(--font-cormorant)] text-2xl text-[var(--ivory)] transition group-hover:text-[var(--gold)] md:text-3xl">
             {author.name}
           </span>
         </span>
-        <span className="hidden font-[family-name:var(--font-inter)] text-xs text-[var(--paper)]/40 sm:inline">
-          {author.roles[0]}
+        <span className="hidden items-center gap-3 sm:flex">
+          <span className="font-[family-name:var(--font-inter)] text-xs text-[var(--paper)]/40">
+            {author.roles[0]}
+          </span>
+          <span className="font-[family-name:var(--font-ibm)] text-[9px] uppercase tracking-wider text-[var(--gold)]/50 opacity-0 transition group-hover:opacity-100">
+            Enter →
+          </span>
         </span>
       </Link>
     </li>
