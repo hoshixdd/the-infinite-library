@@ -1,16 +1,22 @@
 "use client";
 
-import { useMemo, useRef, useEffect, type MutableRefObject } from "react";
+import { useMemo, useRef, useEffect, useLayoutEffect, type MutableRefObject } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
-
-const SPINE_COLORS = [
-  "#3B2A1F","#2F4A3C","#5C4A32","#8C2F2F","#4A3F2E","#A8925A","#2A2420",
-  "#6B5344","#1F2E28","#7A5C3E","#4E342E","#3E4A3A","#6B3A2A","#2C3A4A","#5A4A28",
-];
+import {
+  ATLAS_COLS,
+  ATLAS_COUNT,
+  ATLAS_ROWS,
+  applyAtlasUVShader,
+  createSpineAtlasTexture,
+} from "./spineAtlas";
 
 type BookInstance = {
-  pos: THREE.Vector3; scale: THREE.Vector3; rotZ: number; color: THREE.Color; foil: boolean;
+  pos: THREE.Vector3;
+  scale: THREE.Vector3;
+  rotZ: number;
+  atlasIndex: number;
+  tint: THREE.Color;
 };
 
 function seeded(n: number) {
@@ -19,30 +25,36 @@ function seeded(n: number) {
 }
 
 function buildBooks(side: "left" | "right", rows: number, cols: number): BookInstance[] {
-  const xBase = side === "left" ? -7.05 : 7.05;
+  const xBase = side === "left" ? -4.15 : 4.15;
   const items: BookInstance[] = [];
   let id = side === "left" ? 1 : 900;
   for (let r = 0; r < rows; r++) {
-    let zCursor = -8.2;
+    let zCursor = -10.5;
     for (let c = 0; c < cols; c++) {
       id += 1;
-      const w = 0.18 + seeded(id) * 0.14;
-      const h = 0.5 + seeded(id + 3) * 0.45;
-      const d = 0.28 + seeded(id + 7) * 0.22;
-      const y = -2.2 + r * 1.15 + h / 2;
+      const w = 0.14 + seeded(id) * 0.12;
+      const h = 0.55 + seeded(id + 3) * 0.5;
+      const d = 0.22 + seeded(id + 7) * 0.18;
+      const y = -2.15 + r * 1.05 + h / 2;
       const z = zCursor + d / 2;
-      zCursor += d + 0.03 + seeded(id + 11) * 0.04;
-      const colorHex = SPINE_COLORS[Math.floor(seeded(id + 23) * SPINE_COLORS.length)];
+      zCursor += d + 0.02 + seeded(id + 11) * 0.03;
       items.push({
-        pos: new THREE.Vector3(xBase + (side === "left" ? 0.12 : -0.12), y, z),
+        pos: new THREE.Vector3(xBase + (side === "left" ? 0.08 : -0.08), y, z),
         scale: new THREE.Vector3(w, h, d),
-        rotZ: (seeded(id + 17) - 0.5) * 0.12,
-        color: new THREE.Color(colorHex),
-        foil: seeded(id + 29) > 0.72,
+        rotZ: (seeded(id + 17) - 0.5) * 0.08,
+        atlasIndex: Math.floor(seeded(id + 23) * ATLAS_COUNT),
+        tint: new THREE.Color(1, 1, 1),
       });
     }
   }
   return items;
+}
+
+let sharedAtlas: THREE.CanvasTexture | null = null;
+function getSharedAtlas() {
+  if (typeof document === "undefined") return null;
+  if (!sharedAtlas) sharedAtlas = createSpineAtlasTexture();
+  return sharedAtlas;
 }
 
 export function InstancedBookshelf({
@@ -55,27 +67,39 @@ export function InstancedBookshelf({
   const books = useMemo(() => buildBooks(side, rows, cols), [side, rows, cols]);
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const tmpColor = useMemo(() => new THREE.Color(), []);
-  const highlight = useMemo(() => new THREE.Color("#E8D9A8"), []);
-  const foilGold = useMemo(() => new THREE.Color("#C4A86A"), []);
+  const highlight = useMemo(() => new THREE.Color("#F0E0B0"), []);
   const prevHover = useRef(-1);
   const prevPulse = useRef(-1);
+  const atlas = useMemo(() => getSharedAtlas(), []);
+  const material = useMemo(() => {
+    const mat = new THREE.MeshStandardMaterial({
+      color: "#ffffff", roughness: 0.82, metalness: 0.04,
+      emissive: "#000000", emissiveIntensity: 0,
+      transparent: false, opacity: 1, depthWrite: true, side: THREE.FrontSide,
+    });
+    if (atlas) { mat.map = atlas; applyAtlasUVShader(mat, ATLAS_COLS, ATLAS_ROWS); }
+    return mat;
+  }, [atlas]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mesh = meshRef.current;
     if (!mesh) return;
+    const offsets = new Float32Array(books.length);
     books.forEach((b, i) => {
+      offsets[i] = b.atlasIndex;
       dummy.position.copy(b.pos);
       dummy.rotation.set(0, 0, b.rotZ);
       dummy.scale.copy(b.scale);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
-      const c = b.color.clone();
-      if (b.foil) c.lerp(foilGold, 0.35);
-      mesh.setColorAt(i, c);
+      mesh.setColorAt(i, b.tint);
     });
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-  }, [books, dummy, foilGold]);
+    mesh.geometry.setAttribute("aAtlasIndex", new THREE.InstancedBufferAttribute(offsets, 1));
+  }, [books, dummy, side]);
+
+  useEffect(() => () => { material.dispose(); }, [material]);
 
   useFrame(() => {
     const mesh = meshRef.current;
@@ -89,47 +113,52 @@ export function InstancedBookshelf({
       const global = baseIndex + i;
       const hovered = hoverIndex === global;
       const pulsing = pulseIndex === global;
-      const boost = hovered ? 1.12 : pulsing ? 1 + Math.sin(pulseT.current * 10) * 0.08 : 1;
+      const boost = hovered ? 1.14 : pulsing ? 1 + Math.sin(pulseT.current * 10) * 0.1 : 1;
       dummy.position.copy(b.pos);
-      if (hovered || pulsing) dummy.position.x += side === "left" ? 0.08 : -0.08;
-      dummy.rotation.set(0, 0, b.rotZ + (hovered ? 0.04 : 0));
+      if (hovered || pulsing) dummy.position.x += side === "left" ? 0.1 : -0.1;
+      dummy.rotation.set(0, 0, b.rotZ + (hovered ? 0.05 : 0));
       dummy.scale.set(b.scale.x * boost, b.scale.y * boost, b.scale.z * boost);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
-      tmpColor.copy(b.color);
-      if (b.foil) tmpColor.lerp(foilGold, 0.35);
-      if (hovered) tmpColor.lerp(highlight, 0.55);
-      else if (pulsing) tmpColor.lerp(highlight, 0.35);
+      tmpColor.set(1, 1, 1);
+      if (hovered) tmpColor.lerp(highlight, 0.45);
+      else if (pulsing) tmpColor.lerp(highlight, 0.3);
       mesh.setColorAt(i, tmpColor);
     });
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
   });
 
-  const x = side === "left" ? -7.2 : 7.2;
+  const x = side === "left" ? -4.35 : 4.35;
+  const woodDark = "#3B2A1F";
+  const woodMid = "#5C4033";
+  const gold = "#A8925A";
   return (
     <group>
-      <mesh position={[x, 0.4, -1]}>
-        <boxGeometry args={[0.35, 7.2, 18]} />
-        <meshStandardMaterial color="#1A1A1A" roughness={0.92} metalness={0.05} />
-      </mesh>
+      <mesh position={[x, 0.5, -1.5]}><boxGeometry args={[0.4, 7.4, 22]} /><meshStandardMaterial color={woodDark} roughness={0.88} metalness={0.05} /></mesh>
       {Array.from({ length: rows + 1 }).map((_, i) => (
-        <mesh key={`shelf-${side}-${i}`} position={[x, -2.25 + i * 1.15, -1]}>
-          <boxGeometry args={[0.55, 0.09, 17.5]} />
-          <meshStandardMaterial color="#3A2E24" roughness={0.7} metalness={0.12} />
+        <mesh key={`shelf-${side}-${i}`} position={[x, -2.2 + i * 1.05, -1.5]}>
+          <boxGeometry args={[0.62, 0.08, 21.5]} />
+          <meshStandardMaterial color={woodMid} roughness={0.62} metalness={0.08} />
         </mesh>
       ))}
-      <mesh position={[x, 0.4, -9.5]}><boxGeometry args={[0.5, 7.2, 0.25]} /><meshStandardMaterial color="#2A2420" roughness={0.75} /></mesh>
-      <mesh position={[x, 0.4, 7.5]}><boxGeometry args={[0.5, 7.2, 0.25]} /><meshStandardMaterial color="#2A2420" roughness={0.75} /></mesh>
-      <instancedMesh
-        ref={meshRef}
-        args={[undefined, undefined, books.length]}
+      {Array.from({ length: rows + 1 }).map((_, i) => (
+        <mesh key={`lip-${side}-${i}`} position={[x + (side === "left" ? 0.28 : -0.28), -2.16 + i * 1.05, -1.5]}>
+          <boxGeometry args={[0.04, 0.03, 21.5]} />
+          <meshStandardMaterial color={gold} roughness={0.35} metalness={0.65} />
+        </mesh>
+      ))}
+      {[-10.2, -6.5, -2.8, 0.9, 4.6, 8.2].map((z, i) => (
+        <mesh key={`upright-${side}-${i}`} position={[x, 0.5, z]}>
+          <boxGeometry args={[0.5, 7.3, 0.22]} />
+          <meshStandardMaterial color={woodMid} roughness={0.7} metalness={0.1} />
+        </mesh>
+      ))}
+      <instancedMesh ref={meshRef} args={[undefined, material, books.length]} castShadow={false} receiveShadow
         onPointerMove={(e: ThreeEvent<PointerEvent>) => { e.stopPropagation(); if (e.instanceId != null) onHover(baseIndex + e.instanceId); }}
         onPointerOut={() => onHover(null)}
-        onClick={(e: ThreeEvent<MouseEvent>) => { e.stopPropagation(); if (e.instanceId != null) onClick(baseIndex + e.instanceId); }}
-      >
+        onClick={(e: ThreeEvent<MouseEvent>) => { e.stopPropagation(); if (e.instanceId != null) onClick(baseIndex + e.instanceId); }}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial roughness={0.78} metalness={0.12} emissive="#A8925A" emissiveIntensity={0.06} />
       </instancedMesh>
     </group>
   );
