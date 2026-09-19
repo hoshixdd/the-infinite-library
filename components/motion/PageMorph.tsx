@@ -17,6 +17,7 @@ export function PageMorph() {
     };
     if (!doc.startViewTransition) return;
 
+    // Mark root for CSS ::view-transition-* styling in museum-chrome.css
     document.documentElement.dataset.pageMorph = pathname;
     return () => {
       delete document.documentElement.dataset.pageMorph;

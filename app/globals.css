@@ -9,6 +9,23 @@
   --filipino-brown: #3b2a1f;
   --filipino-green: #2f4a3c;
   --filipino-red: #8c2f2f;
+  --wood: #2a2420;
+  --archive: #0c0a08;
+  /* Richer secondary tones — cinematic museum, not flat gray */
+  --amber-glow: #c4a574;
+  --amber-deep: #8a6a3a;
+  --wood-deep: #1c1612;
+  --wood-warm: #3d3228;
+  --teal-cool: #2a4a4e;
+  --teal-mist: #3d6b6f;
+  --parchment: #efe6d6;
+  --parchment-soft: #f7f1e6;
+  --ink: #050504;
+  --ink-soft: #0e0c0a;
+  --gold-hairline: rgba(168, 146, 90, 0.45);
+  --gold-soft: rgba(196, 176, 138, 0.28);
+  --wing-warm-wash: rgba(59, 42, 31, 0.35);
+  --wing-cool-wash: rgba(42, 74, 78, 0.22);
   --background: var(--void);
   --foreground: var(--paper);
 }
@@ -27,17 +44,98 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* auto while ScrollTrigger pages run — set in scroll.ts; attr kept for Next warning */
+  scroll-behavior: auto;
   background: var(--void);
 }
 
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: auto;
+}
+
+/* Cinematic light veil — replaces filter:brightness scrub */
+[data-light-veil] {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(26, 18, 12, 0.55) 0%, rgba(12, 8, 6, 0.85) 100%);
+  opacity: 0;
+}
+
+/* Keep custom cursor, but ensure CTAs/links remain clearly clickable */
+a,
+button,
+[role="button"],
+summary,
+label[for] {
+  cursor: pointer !important;
+  pointer-events: auto;
+}
+
+/* Let empty section chrome pass through to interactive 3D canvas */
+[data-scroll-section] {
+  pointer-events: none;
+}
+[data-scroll-section] a,
+[data-scroll-section] button,
+[data-scroll-section] [data-reveal],
+[data-scroll-section] [data-magnetic],
+[data-scroll-section] input,
+[data-scroll-section] textarea,
+[data-scroll-section] select,
+[data-scroll-section] .hit-target {
+  pointer-events: auto;
+}
+
+[data-chapter] {
+  pointer-events: none;
+}
+[data-chapter] a,
+[data-chapter] button,
+[data-chapter] [data-reveal],
+[data-chapter] [data-approach],
+[data-chapter] [data-magnetic],
+[data-chapter] .hit-target {
+  pointer-events: auto;
+}
+
+
 body {
-  background: var(--void);
+  background:
+    radial-gradient(ellipse at 50% 0%, #14110e 0%, var(--void) 42%, var(--ink) 100%);
   color: var(--paper);
   font-family: var(--font-inter), system-ui, sans-serif;
   min-height: 100vh;
   cursor: none;
   overflow-x: hidden;
+}
+
+/* Archival paper grain — library, not space */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Warm parchment veil + amber edge wash — breaks monotone void slabs */
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(196, 165, 116, 0.09), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 80%, rgba(59, 42, 31, 0.18), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 100% 70%, rgba(42, 74, 78, 0.12), transparent 50%),
+    linear-gradient(180deg, var(--ink-soft) 0%, transparent 18%, transparent 82%, var(--ink) 100%);
+  opacity: 0.9;
 }
 
 @media (pointer: coarse), (max-width: 767px) {
@@ -60,11 +158,12 @@ a {
 @media (min-width: 768px) {
   [data-scroll-section],
   [data-chapter] {
-    perspective: 1200px;
+    perspective: 1400px;
+    transform-style: preserve-3d;
   }
 }
 
-/* Mobile: stacked editorial storytelling — not shrunk desktop */
+/* Mobile: stacked editorial storytelling */
 @media (max-width: 767px) {
   [data-chapter],
   [data-scroll-section] {
@@ -82,7 +181,7 @@ a {
   }
 
   .mobile-hide-3d-heavy {
-    opacity: 0.35 !important;
+    opacity: 0.4 !important;
   }
 
   h1 {
@@ -97,20 +196,297 @@ a {
     display: inline-flex;
     align-items: center;
   }
+
+  .film-letterbox {
+    display: none;
+  }
 }
 
-@keyframes library-wipe {
+/* ——— Film / museum chrome ——— */
+
+.film-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 42%,
+    rgba(9, 9, 9, 0.55) 78%,
+    rgba(9, 9, 9, 0.88) 100%
+  );
+}
+
+.film-letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(12px, 2.5vh, 28px);
+  background: #050505;
+  opacity: 0.55;
+}
+.film-letterbox--top {
+  top: 0;
+}
+.film-letterbox--bottom {
+  bottom: 0;
+}
+
+.light-shaft {
+  position: absolute;
+  top: -10%;
+  width: clamp(80px, 14vw, 180px);
+  height: 130%;
+  background: linear-gradient(
+    180deg,
+    rgba(168, 146, 90, 0.18) 0%,
+    rgba(168, 146, 90, 0.05) 45%,
+    transparent 100%
+  );
+  filter: blur(18px);
+  transform-origin: top center;
+  animation: shaft-breathe 9s ease-in-out infinite;
+}
+.light-shaft--a {
+  left: 28%;
+  transform: skewX(-12deg) rotate(4deg);
+}
+.light-shaft--b {
+  left: 58%;
+  transform: skewX(-8deg) rotate(-3deg);
+  animation-delay: -3.5s;
+  opacity: 0.7;
+}
+.light-shaft--warm {
+  background: linear-gradient(
+    180deg,
+    rgba(196, 176, 138, 0.2) 0%,
+    rgba(168, 146, 90, 0.06) 50%,
+    transparent 100%
+  );
+}
+.light-shaft--cool {
+  background: linear-gradient(
+    180deg,
+    rgba(180, 190, 200, 0.12) 0%,
+    rgba(100, 120, 140, 0.04) 50%,
+    transparent 100%
+  );
+}
+
+.dust-motes {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(1.5px 1.5px at 20% 30%, rgba(244, 239, 230, 0.35), transparent),
+    radial-gradient(1px 1px at 70% 45%, rgba(168, 146, 90, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(232, 224, 212, 0.25), transparent),
+    radial-gradient(1px 1px at 85% 20%, rgba(196, 176, 138, 0.3), transparent),
+    radial-gradient(1px 1px at 55% 85%, rgba(244, 239, 230, 0.2), transparent);
+  background-size: 100% 100%;
+  animation: dust-drift 18s linear infinite;
+  opacity: 0.55;
+}
+
+@keyframes shaft-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes dust-drift {
   0% {
-    clip-path: inset(0 0 100% 0);
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-40px);
+  }
+}
+
+/* Gallery picture frame */
+.gallery-frame {
+  position: relative;
+}
+.gallery-frame__mat {
+  padding: 11px;
+  background:
+    linear-gradient(145deg, #4a3e32 0%, #2a221c 38%, #14110e 72%, #2e2620 100%);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.62),
+    0 0 40px rgba(168, 146, 90, 0.08),
+    inset 0 0 0 1px rgba(196, 176, 138, 0.35),
+    inset 0 0 0 3px rgba(26, 22, 18, 0.95),
+    inset 0 1px 0 rgba(244, 239, 230, 0.08);
+}
+.gallery-frame__inner {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+}
+.gallery-spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 60%;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(244, 239, 230, 0.2), transparent 65%),
+    radial-gradient(ellipse at 40% 20%, rgba(196, 165, 116, 0.1), transparent 50%);
+  opacity: 0.75;
+  transition: opacity 0.6s ease;
+}
+.gallery-frame:hover .gallery-spotlight {
+  opacity: 1;
+}
+
+.gallery-wall-label {
+  border-left: 2px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  padding-left: 0.75rem;
+}
+
+/* Exhibit plinth / book card */
+.exhibit-plinth {
+  isolation: isolate;
+}
+.exhibit-plinth__shelf {
+  height: 12px;
+  margin: 0 8% -2px;
+  background: linear-gradient(180deg, #4a3e32, #2a221c 45%, #14110e);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(196, 176, 138, 0.2);
+  border-radius: 1px;
+}
+.exhibit-plinth__book {
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(168, 146, 90, 0.12);
+  background:
+    linear-gradient(165deg, rgba(244, 239, 230, 0.04), transparent 40%),
+    linear-gradient(180deg, rgba(26, 26, 26, 0.85), rgba(14, 12, 10, 0.92));
+}
+.exhibit-plinth__spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold) 50%, transparent),
+    color-mix(in srgb, var(--filipino-brown) 70%, transparent)
+  );
+}
+.exhibit-caption-rail {
+  border-top: 1px solid color-mix(in srgb, var(--paper) 12%, transparent);
+}
+
+/* Wing lighting accents — warm wood vs cool teal atmosphere */
+.wing-warm {
+  --wing-glow: color-mix(in srgb, var(--filipino-green) 28%, transparent);
+  --wing-accent: var(--filipino-green);
+  --wing-wash: var(--wing-warm-wash);
+}
+.wing-cool {
+  --wing-glow: color-mix(in srgb, var(--teal-cool) 32%, transparent);
+  --wing-accent: var(--teal-mist);
+  --wing-wash: var(--wing-cool-wash);
+}
+
+.wing-warm [data-chapter],
+.wing-warm[data-scroll-section] {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(140, 47, 47, 0.06), transparent 50%),
+    radial-gradient(ellipse 70% 55% at 80% 90%, rgba(47, 74, 60, 0.1), transparent 55%),
+    linear-gradient(180deg, transparent, rgba(28, 22, 18, 0.35));
+}
+.wing-cool [data-chapter],
+.wing-cool[data-scroll-section] {
+  background-image:
+    radial-gradient(ellipse 75% 50% at 75% 15%, rgba(61, 107, 111, 0.1), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 15% 85%, rgba(168, 146, 90, 0.06), transparent 55%),
+    linear-gradient(180deg, transparent, rgba(10, 14, 16, 0.4));
+}
+
+.library-arch-paper {
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(196, 165, 116, 0.14), transparent 52%),
+    radial-gradient(ellipse at 30% 70%, rgba(59, 42, 31, 0.2), transparent 45%),
+    linear-gradient(180deg, transparent 0%, rgba(12, 10, 8, 0.5) 100%);
+}
+
+.shelf-silhouette {
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 14px,
+      color-mix(in srgb, var(--filipino-brown) 35%, transparent) 14px,
+      color-mix(in srgb, var(--filipino-brown) 35%, transparent) 22px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 48px,
+      color-mix(in srgb, var(--wood) 80%, transparent) 48px,
+      color-mix(in srgb, var(--wood) 80%, transparent) 52px
+    );
+  opacity: 0.25;
+}
+
+/* ——— Film-flow transitions (not PowerPoint) ——— */
+
+@keyframes film-iris {
+  0% {
+    clip-path: circle(0% at 50% 50%);
     opacity: 1;
   }
-  40% {
+  35% {
+    clip-path: circle(75% at 50% 50%);
+    opacity: 1;
+  }
+  70% {
+    clip-path: circle(100% at 50% 50%);
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(0% at 50% 48%);
+    opacity: 0;
+  }
+}
+
+@keyframes film-wipe-pull {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  28% {
     clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    opacity: 1;
+  }
+  72% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(0.98);
     opacity: 1;
   }
   100% {
     clip-path: inset(100% 0 0 0);
+    transform: scale(0.94);
     opacity: 0;
+  }
+}
+
+@keyframes archive-open {
+  0% {
+    clip-path: inset(48% 42% 48% 42%);
+    filter: brightness(0.2);
+  }
+  55% {
+    clip-path: inset(8% 6% 8% 6%);
+    filter: brightness(0.7);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1);
   }
 }
 
@@ -141,7 +517,15 @@ a {
 }
 
 .anim-wipe {
-  animation: library-wipe 0.9s ease-in-out forwards;
+  animation: film-wipe-pull 1.15s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+.anim-iris {
+  animation: film-iris 1.25s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+.anim-archive-open {
+  animation: archive-open 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .anim-dash {
@@ -161,7 +545,10 @@ a {
 }
 
 .magnetic-card:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 40px rgba(168, 146, 90, 0.08);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(168, 146, 90, 0.14),
+    inset 0 0 0 1px rgba(196, 176, 138, 0.2);
 }
 
 .portrait-frame {
@@ -170,7 +557,9 @@ a {
 
 .portrait-frame:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 28px 56px rgba(0, 0, 0, 0.55),
+    0 0 36px rgba(196, 165, 116, 0.18);
 }
 
 .work-card {
@@ -180,4 +569,83 @@ a {
 .work-card:hover {
   transform: translateY(-8px);
   border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
+
+
+/* ——— Museum nav + chapter chrome ——— */
+
+.nav-gold-underline {
+  position: relative;
+}
+.nav-gold-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-gold-underline[data-active="true"]::after,
+.nav-gold-underline:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.chapter-bay-header {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.65rem 1rem 0.75rem 0.9rem;
+  border-left: 2px solid var(--gold-hairline);
+  background:
+    linear-gradient(90deg, rgba(168, 146, 90, 0.08), transparent 70%),
+    linear-gradient(180deg, rgba(26, 22, 18, 0.45), transparent);
+  box-shadow: inset 0 0 0 1px rgba(168, 146, 90, 0.06);
+}
+
+.parchment-card {
+  background:
+    linear-gradient(160deg, rgba(244, 239, 230, 0.06), transparent 45%),
+    linear-gradient(180deg, rgba(28, 24, 20, 0.88), rgba(14, 12, 10, 0.94));
+  border: 1px solid rgba(168, 146, 90, 0.18);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(244, 239, 230, 0.06);
+}
+
+.btn-museum {
+  position: relative;
+  border: 1px solid rgba(168, 146, 90, 0.45);
+  background: linear-gradient(180deg, rgba(168, 146, 90, 0.08), transparent);
+  transition: border-color 0.35s ease, background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
+}
+.btn-museum:hover {
+  border-color: rgba(196, 176, 138, 0.75);
+  background: linear-gradient(180deg, rgba(168, 146, 90, 0.16), rgba(168, 146, 90, 0.04));
+  box-shadow: 0 0 28px rgba(168, 146, 90, 0.12);
+}
+
+.progress-track {
+  background: linear-gradient(90deg, var(--wood-deep), var(--charcoal), var(--wood-deep));
+  box-shadow: 0 1px 0 rgba(168, 146, 90, 0.15);
+}
+.progress-fill {
+  background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--amber-glow));
+  box-shadow: 0 0 12px rgba(196, 165, 116, 0.45);
+}
+
+/* View Transitions soft morph (progressive) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+/* Approach mask for chapter inhabit */
+.film-approach {
+  will-change: transform, clip-path, filter;
 }

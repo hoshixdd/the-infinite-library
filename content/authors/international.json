@@ -1,1 +1,652 @@
-[{"slug":"jrr-tolkien","order":1,"wing":"international","name":"J. R. R. Tolkien","fullName":"John Ronald Reuel Tolkien","birth":"January 3, 1892, Bloemfontein, Orange Free State","death":"September 2, 1973, Bournemouth, England","roles":["Novelist","Philologist","Poet","Professor"],"bio":"Oxford philologist and architect of Middle-earth whose invented languages and mythic history reshaped modern fantasy. Tolkien's work is rooted in scholarship, war memory, and a deep love of northern legend—not in film spectacle.","works":[{"title":"The Hobbit","year":"1937","blurb":"A quest tale of unexpected courage, dragons, and the road that goes ever on, written first for children and lasting for everyone."},{"title":"The Lord of the Rings","year":"1954–1955","blurb":"An epic of fellowship, power, and pity whose secondary world is built from language outward."},{"title":"The Silmarillion","year":"1977 (posthumous)","blurb":"The deep mythic history of the Elder Days—creation, exile, and ruin—edited from Tolkien's lifelong legendarium."}],"significance":"Foundational architect of modern high fantasy through language-first worldbuilding.","fact":"A professional philologist whose invented tongues preceded and shaped his narratives.","quote":"Not all those who wander are lost.","visualConcept":"Hand-drawn map zooming into legend (no film look)","motifs":["maps","runes","trees","manuscripts"],"transitionOut":"map-zoom","notes":["Visuals must avoid film/movie aesthetic."],"portrait":{"src":"/portraits/jrr-tolkien.jpg","alt":"Illustrative museum plate for J. R. R. Tolkien","credit":"Illustrative museum plate (not a photograph). Portrait rights generally controlled by the Tolkien Estate; plate is original.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:J._R._R._Tolkien"},"sources":[{"label":"Tolkien Estate / scholarly bibliographies","url":"https://www.tolkienestate.com/"}]},{"slug":"gabriel-garcia-marquez","order":2,"wing":"international","name":"Gabriel García Márquez","fullName":"Gabriel José de la Concordia García Márquez","birth":"March 6, 1927, Aracataca, Colombia","death":"April 17, 2014, Mexico City, Mexico","roles":["Novelist","Short story writer","Journalist","Nobel Laureate (1982)"],"bio":"Colombian Nobel laureate who made Macondo a global grammar for memory, solitude, and the marvelous ordinary. García Márquez fused journalism's clarity with mythic exaggeration.","works":[{"title":"One Hundred Years of Solitude","year":"1967","blurb":"The multi-generational saga of the Buendía family and the town of Macondo—magical realism's most famous cathedral."},{"title":"Love in the Time of Cholera","year":"1985","blurb":"A decades-long love story of patience, pride, and the comedy of desire beside the Caribbean."},{"title":"Chronicle of a Death Foretold","year":"1981","blurb":"A spare, circular chronicle of a murder everyone saw coming and no one stopped."}],"significance":"Central voice of the Latin American Boom and Nobel Prize in Literature (1982).","fact":"Awarded the Nobel Prize in Literature in 1982.","quote":"What matters in life is not what happens to you but what you remember and how you remember it.","visualConcept":"Ordinary objects tipping into the impossible","motifs":["yellow butterflies","ice","bananas","clocks"],"transitionOut":"ordinary-to-impossible","portrait":{"src":"/portraits/gabriel-garcia-marquez.jpg","alt":"Illustrative museum plate for Gabriel García Márquez","credit":"Illustrative museum plate (not a photograph). Many press photos remain under copyright; plate is original.","sourceUrl":"https://www.nobelprize.org/prizes/literature/1982/marquez/biographical/"},"sources":[{"label":"Nobel Prize biography","url":"https://www.nobelprize.org/"}]},{"slug":"miguel-de-cervantes","order":3,"wing":"international","name":"Miguel de Cervantes","fullName":"Miguel de Cervantes Saavedra","birth":"1547, Alcalá de Henares, Spain","death":"1616, Madrid, Spain","roles":["Novelist","Playwright","Poet","Soldier"],"bio":"Soldier, captive, and inventor of the modern novel. Cervantes's Don Quixote turned idealism and parody into a new form of fiction that still frames how we read character and reality.","works":[{"title":"Don Quixote","year":"1605 / 1615","blurb":"The knight of the sorrowful countenance rides out into a world that refuses to match his books—comedy, cruelty, and metafiction at once."},{"title":"Novelas Ejemplares","year":"1613","blurb":"A set of exemplary novellas ranging from picaresque grit to romance, showcasing Cervantes's range beyond the Quixote."},{"title":"La Galatea","year":"1585","blurb":"An early pastoral romance that reveals Cervantes's first long experiments with narrative desire."}],"significance":"Foundational author of the modern European novel.","fact":"Don Quixote appeared in two parts (1605 and 1615) and helped invent metafictional play.","quote":"The truth may be stretched thin, but it never breaks.","visualConcept":"Windmill blades wiping the frame","motifs":["windmills","armor","inns","manuscripts"],"transitionOut":"windmill-wipe","portrait":{"src":"/portraits/miguel-de-cervantes.jpg","alt":"Illustrative museum plate for Miguel de Cervantes","credit":"Illustrative museum plate. Attributed historical portraits (e.g. Jáuregui) are public domain on Wikimedia Commons.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:Miguel_de_Cervantes"},"sources":[{"label":"Cervantes scholarship / Biblioteca Nacional de España","url":"https://www.bne.es/"}]},{"slug":"charles-dickens","order":4,"wing":"international","name":"Charles Dickens","fullName":"Charles John Huffam Dickens","birth":"1812, Portsmouth, England","death":"1870, Higham, Kent, England","roles":["Novelist","Journalist","Social critic"],"bio":"Victorian novelist of fog, factories, and feeling whose serial fiction made social conscience popular entertainment. Dickens gave the city a moral weather system.","works":[{"title":"Oliver Twist","year":"1837–1839","blurb":"A workhouse orphan's path through crime and kindness, exposing the cruelty of institutions that claim to care."},{"title":"A Christmas Carol","year":"1843","blurb":"Scrooge's night of ghosts remains the language of seasonal redemption and social responsibility."},{"title":"Great Expectations","year":"1860–1861","blurb":"Pip's rise and shame form a novel of class, guilt, and the true sources of gentility."}],"significance":"Defining novelist of Victorian London and serial social fiction.","fact":"Published most major novels in serial parts, shaping how readers awaited story.","quote":"No one is useless in this world who lightens the burdens of another.","visualConcept":"London fog filling the gallery","motifs":["fog","gaslight","cobblestones","serial pages"],"transitionOut":"fog-fill","portrait":{"src":"/portraits/charles-dickens.jpg","alt":"Illustrative museum plate for Charles Dickens","credit":"Illustrative museum plate. Public-domain photographs (e.g. Jeremiah Gurney) on Wikimedia Commons.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:Charles_Dickens"},"sources":[{"label":"Dickens Museum / public domain editions","url":"https://dickensmuseum.com/"}]},{"slug":"antoine-de-saint-exupery","order":5,"wing":"international","name":"Antoine de Saint-Exupéry","fullName":"Antoine Marie Jean-Baptiste Roger de Saint-Exupéry","birth":"1900, Lyon, France","death":"1944 (lost on a reconnaissance flight)","roles":["Writer","Aviator","Poet of flight"],"bio":"Aviator-writer whose desert crashes and night mail routes became philosophy. Saint-Exupéry wrote of responsibility, friendship, and the sky—without relying on copyrighted Little Prince illustrations.","works":[{"title":"The Little Prince","year":"1943","blurb":"A fable of planets, roses, and tamed foxes that asks adults to remember what essential things are invisible to the eye."},{"title":"Night Flight","year":"1931","blurb":"A taut novel of airmail pilots racing storms and duty across South American nights."},{"title":"Wind, Sand and Stars","year":"1939","blurb":"Memoir-essays of flight, crash, and human solidarity under desert stars."}],"significance":"Pilot-philosopher of modern French letters; The Little Prince is among the world's most translated books.","fact":"Disappeared on a 1944 reconnaissance mission over the Mediterranean.","quote":"What is essential is invisible to the eye.","visualConcept":"Rise from desert sand into open sky (no copyrighted art)","motifs":["stars","propeller","desert","night sky"],"transitionOut":"rise-to-sky","notes":["Do not use copyrighted Little Prince artwork."],"portrait":{"src":"/portraits/antoine-de-saint-exupery.jpg","alt":"Illustrative museum plate for Antoine de Saint-Exupéry","credit":"Illustrative museum plate (not copyrighted Little Prince art). Historical photos: Wikimedia Commons category.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:Antoine_de_Saint-Exup%C3%A9ry"},"sources":[{"label":"Saint-Exupéry foundations / public biographies","url":"https://www.antoinedesaintexupery.com/"}]},{"slug":"george-orwell","order":6,"wing":"international","name":"George Orwell","fullName":"Eric Arthur Blair","birth":"June 25, 1903, Motihari, British India","death":"January 21, 1950, London, England","roles":["Novelist","Essayist","Journalist","Critic"],"bio":"Essayist and novelist of clarity against tyranny. As George Orwell, Eric Blair made political writing an art and warned how language itself can be occupied.","works":[{"title":"Animal Farm","year":"1945","blurb":"A fable of revolution betrayed, where some animals become more equal than others."},{"title":"Nineteen Eighty-Four","year":"1949","blurb":"A dystopia of surveillance, Newspeak, and the erasure of truth that still names our political nightmares."},{"title":"Homage to Catalonia","year":"1938","blurb":"Orwell's firsthand account of the Spanish Civil War and the fractures inside the left."}],"significance":"Moral stylist of anti-totalitarian literature and political English prose.","fact":"Took the pen name George Orwell; fought in Spain and later wrote against both fascism and Stalinism.","quote":"In a time of deceit telling the truth is a revolutionary act.","visualConcept":"Surveillance beam intercepting the page","motifs":["eyes","posters","typewriter","fogged lenses"],"transitionOut":"surveillance-intercept","portrait":{"src":"/portraits/george-orwell.jpg","alt":"Illustrative museum plate for George Orwell","credit":"Illustrative museum plate. Some press images remain restricted; plate is original. See Orwell Foundation.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:George_Orwell"},"sources":[{"label":"Orwell Foundation / public domain editions (where applicable)","url":"https://www.orwellfoundation.com/"}]},{"slug":"ernest-hemingway","order":7,"wing":"international","name":"Ernest Hemingway","fullName":"Ernest Miller Hemingway","birth":"July 21, 1899, Oak Park, Illinois","death":"July 2, 1961, Ketchum, Idaho","roles":["Novelist","Short story writer","Journalist","Nobel Laureate"],"bio":"Master of stripped prose and iceberg understatement. Hemingway wrote war, love, and courage as surfaces that hide vast depths.","works":[{"title":"The Sun Also Rises","year":"1926","blurb":"Expatriates drift from Paris to Pamplona in a novel of wound, ritual, and the Lost Generation."},{"title":"A Farewell to Arms","year":"1929","blurb":"A love story against the Italian front, where war unmakes every private vow."},{"title":"For Whom the Bell Tolls","year":"1940","blurb":"An American in the Spanish Civil War learns that no one is an island—and that bridges are costly."}],"significance":"Architect of modernist spareness; Nobel Prize in Literature (1954).","fact":"Awarded the Nobel Prize in Literature in 1954.","quote":"There is nothing to writing. All you do is sit down at a typewriter and bleed.","visualConcept":"Prose stripped to a single horizon line","motifs":["horizon","typewriter","rivers","bullring dust"],"transitionOut":"strip-to-horizon","portrait":{"src":"/portraits/ernest-hemingway.jpg","alt":"Illustrative museum plate for Ernest Hemingway","credit":"Illustrative museum plate. Several public-domain photographs exist on Wikimedia Commons (Category:Ernest Hemingway).","sourceUrl":"https://commons.wikimedia.org/wiki/Category:Ernest_Hemingway"},"sources":[{"label":"Nobel Prize / Hemingway collections","url":"https://www.nobelprize.org/"}]},{"slug":"leo-tolstoy","order":8,"wing":"international","name":"Leo Tolstoy","fullName":"Lev Nikolayevich Tolstoy","birth":"September 9, 1828, Yasnaya Polyana, Russian Empire","death":"November 20, 1910, Astapovo, Russian Empire","roles":["Novelist","Essayist","Moral philosopher"],"bio":"Russian novelist of war, marriage, and spiritual crisis whose epics expanded what fiction could hold. Tolstoy sought truth in both panorama and the deathbed of a single soul.","works":[{"title":"War and Peace","year":"1869","blurb":"A vast novel of Napoleonic invasion, family life, and the mystery of historical force."},{"title":"Anna Karenina","year":"1878","blurb":"Adultery, society, and the search for a meaningful life—Tolstoy's most intimate epic."},{"title":"The Death of Ivan Ilyich","year":"1886","blurb":"A novella of a bureaucrat's dying that strips away false living with merciless clarity."}],"significance":"Summit of the nineteenth-century realist novel and moral inquiry.","fact":"Lived and wrote at Yasnaya Polyana; later embraced radical Christian ethics and pacifism.","quote":"All happy families are alike; each unhappy family is unhappy in its own way.","visualConcept":"Horizon expanding across steppe and war","motifs":["steppe","ballrooms","battlefield smoke","icons"],"transitionOut":"horizon-expand","portrait":{"src":"/portraits/leo-tolstoy.jpg","alt":"Illustrative museum plate for Leo Tolstoy","credit":"Illustrative museum plate. Public-domain photographs (incl. Prokudin-Gorsky) on Wikimedia Commons.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:Leo_Tolstoy"},"sources":[{"label":"Tolstoy museums / public domain translations","url":"https://tolstoymuseum.ru/"}]},{"slug":"william-shakespeare","order":9,"wing":"international","name":"William Shakespeare","fullName":"William Shakespeare","birth":"1564, Stratford-upon-Avon, England","death":"1616, Stratford-upon-Avon, England","roles":["Playwright","Poet","Actor"],"bio":"The English stage's central imagination—tragedy, comedy, history, and sonnets that still supply our language for love, ambition, and doubt.","works":[{"title":"Hamlet","year":"c. 1600","blurb":"A prince's delayed revenge becomes a meditation on thought, theater, and mortality."},{"title":"Romeo and Juliet","year":"c. 1595","blurb":"Youthful love against a feud, written in heat and lyric speed."},{"title":"Macbeth","year":"c. 1606","blurb":"Ambition, prophecy, and blood—Scotland's night collapsing under a usurper's guilt."}],"significance":"Cornerstone of English-language drama and poetic vocabulary.","fact":"Associated with the Lord Chamberlain's / King's Men and the Globe Theatre.","quote":"We are such stuff as dreams are made on.","visualConcept":"Page becoming a lit stage","motifs":["stage boards","candles","masks","folio pages"],"transitionOut":"become-stage","portrait":{"src":"/portraits/william-shakespeare.jpg","alt":"Illustrative museum plate for William Shakespeare","credit":"Illustrative museum plate. Droeshout engraving (First Folio) is public domain on Wikimedia Commons.","sourceUrl":"https://commons.wikimedia.org/wiki/Category:William_Shakespeare"},"sources":[{"label":"Folger Shakespeare Library","url":"https://www.folger.edu/"}]},{"slug":"jk-rowling","order":10,"wing":"international","name":"J. K. Rowling","fullName":"Joanne Rowling","birth":"1965, Yate, England","death":null,"roles":["Novelist"],"bio":"British novelist whose Harry Potter series returned global childhood reading to long-form wonder. This gallery focuses on literary craft and book history—not film or theme-park iconography.","works":[{"title":"Harry Potter and the Philosopher's Stone","year":"1997","blurb":"A cupboard under the stairs opens onto a school of magic and a war waiting in memory."},{"title":"Harry Potter and the Prisoner of Azkaban","year":"1999","blurb":"Time, loyalty, and fear take adult shape as the series darkens with craft and consequence."},{"title":"Harry Potter and the Deathly Hallows","year":"2007","blurb":"The final hunt for Horcruxes closes the bildungsroman as epic of sacrifice and choice."}],"significance":"Late-twentieth-century phenomenon that revived reading culture for a generation.","fact":"First novel published in 1997 (UK) as Philosopher's Stone; series completed in 2007.","quote":"It is our choices, Harry, that show what we truly are, far more than our abilities.","visualConcept":"Pages turning into an archive shelf (no Hogwarts/movie look)","motifs":["books","ink","train steam (abstract)","archive boxes"],"transitionOut":"pages-to-archive","notes":["Avoid Hogwarts castle / movie imagery."],"portrait":{"src":"/portraits/jk-rowling.jpg","alt":"Illustrative museum plate for J. K. Rowling (not a photograph)","credit":"Illustrative museum plate / silhouette — living author; no photographic likeness claimed. Rights unclear for press photos.","sourceUrl":"https://www.jkrowling.com/"},"sources":[{"label":"Author bibliography / publisher records","url":"https://www.jkrowling.com/"}]}]
+[
+  {
+    "slug": "jrr-tolkien",
+    "order": 1,
+    "wing": "international",
+    "name": "J. R. R. Tolkien",
+    "fullName": "John Ronald Reuel Tolkien",
+    "birth": "January 3, 1892",
+    "death": "September 2, 1973",
+    "roles": [
+      "Novelist",
+      "Philologist",
+      "Poet",
+      "Professor"
+    ],
+    "bio": "Oxford philologist and architect of Middle-earth whose invented languages and mythic history reshaped modern fantasy. Tolkien's work is rooted in scholarship, war memory, and a deep love of northern legend—not in film spectacle.",
+    "works": [
+      {
+        "title": "The Hobbit",
+        "year": "1937",
+        "blurb": "A quest tale of unexpected courage, dragons, and the road that goes ever on, written first for children and lasting for everyone."
+      },
+      {
+        "title": "The Lord of the Rings",
+        "year": "1954–1955",
+        "blurb": "An epic of fellowship, power, and pity whose secondary world is built from language outward."
+      },
+      {
+        "title": "The Silmarillion",
+        "year": "1977 (posthumous)",
+        "blurb": "The deep mythic history of the Elder Days—creation, exile, and ruin—edited from Tolkien's lifelong legendarium."
+      }
+    ],
+    "significance": "Foundational architect of modern high fantasy through language-first worldbuilding.",
+    "fact": "A professional philologist whose invented tongues preceded and shaped his narratives.",
+    "quote": "Not all those who wander are lost.",
+    "visualConcept": "Hand-drawn map zooming into legend (no film look)",
+    "motifs": [
+      "maps",
+      "runes",
+      "trees",
+      "manuscripts"
+    ],
+    "transitionOut": "map-zoom",
+    "notes": [
+      "Visuals must avoid film/movie aesthetic."
+    ],
+    "portrait": {
+      "src": "/portraits/jrr-tolkien.jpg",
+      "alt": "Portrait of J. R. R. Tolkien",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Tolkien Estate",
+        "url": "https://www.tolkienestate.com/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — J.R.R. Tolkien",
+        "url": "https://www.britannica.com/biography/J-R-R-Tolkien"
+      },
+      {
+        "label": "Bodleian Libraries — Tolkien collections overview",
+        "url": "https://www.bodleian.ox.ac.uk/"
+      }
+    ],
+    "bornPlace": "Bloemfontein, Orange Free State",
+    "diedPlace": "Bournemouth, England",
+    "nationality": "British",
+    "occupation": "Novelist, philologist, poet, and Oxford professor; architect of Middle-earth"
+  },
+  {
+    "slug": "gabriel-garcia-marquez",
+    "order": 2,
+    "wing": "international",
+    "name": "Gabriel García Márquez",
+    "fullName": "Gabriel José de la Concordia García Márquez",
+    "birth": "March 6, 1927",
+    "death": "April 17, 2014",
+    "roles": [
+      "Novelist",
+      "Short story writer",
+      "Journalist",
+      "Nobel Laureate (1982)"
+    ],
+    "bio": "Colombian Nobel laureate who made Macondo a global grammar for memory, solitude, and the marvelous ordinary. García Márquez fused journalism's clarity with mythic exaggeration.",
+    "works": [
+      {
+        "title": "One Hundred Years of Solitude",
+        "year": "1967",
+        "blurb": "The multi-generational saga of the Buendía family and the town of Macondo—magical realism's most famous cathedral."
+      },
+      {
+        "title": "Love in the Time of Cholera",
+        "year": "1985",
+        "blurb": "A decades-long love story of patience, pride, and the comedy of desire beside the Caribbean."
+      },
+      {
+        "title": "Chronicle of a Death Foretold",
+        "year": "1981",
+        "blurb": "A spare, circular chronicle of a murder everyone saw coming and no one stopped."
+      }
+    ],
+    "significance": "Central voice of the Latin American Boom and Nobel Prize in Literature (1982).",
+    "fact": "Awarded the Nobel Prize in Literature in 1982.",
+    "quote": "What matters in life is not what happens to you but what you remember and how you remember it.",
+    "visualConcept": "Ordinary objects tipping into the impossible",
+    "motifs": [
+      "yellow butterflies",
+      "ice",
+      "bananas",
+      "clocks"
+    ],
+    "transitionOut": "ordinary-to-impossible",
+    "portrait": {
+      "src": "/portraits/gabriel-garcia-marquez.jpg",
+      "alt": "Portrait of Gabriel García Márquez",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Nobel Prize biographical",
+        "url": "https://www.nobelprize.org/prizes/literature/1982/marquez/biographical/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Gabriel García Márquez",
+        "url": "https://www.britannica.com/biography/Gabriel-Garcia-Marquez"
+      }
+    ],
+    "bornPlace": "Aracataca, Colombia",
+    "diedPlace": "Mexico City, Mexico",
+    "nationality": "Colombian",
+    "occupation": "Novelist, short story writer, journalist; Nobel Prize in Literature (1982)"
+  },
+  {
+    "slug": "miguel-de-cervantes",
+    "order": 3,
+    "wing": "international",
+    "name": "Miguel de Cervantes",
+    "fullName": "Miguel de Cervantes Saavedra",
+    "birth": "1547 (baptized October 9)",
+    "death": "April 22, 1616",
+    "roles": [
+      "Novelist",
+      "Playwright",
+      "Poet",
+      "Soldier"
+    ],
+    "bio": "Soldier, captive, and inventor of the modern novel. Cervantes's Don Quixote turned idealism and parody into a new form of fiction that still frames how we read character and reality.",
+    "works": [
+      {
+        "title": "Don Quixote",
+        "year": "1605 / 1615",
+        "blurb": "The knight of the sorrowful countenance rides out into a world that refuses to match his books—comedy, cruelty, and metafiction at once."
+      },
+      {
+        "title": "Novelas Ejemplares",
+        "year": "1613",
+        "blurb": "A set of exemplary novellas ranging from picaresque grit to romance, showcasing Cervantes's range beyond the Quixote."
+      },
+      {
+        "title": "La Galatea",
+        "year": "1585",
+        "blurb": "An early pastoral romance that reveals Cervantes's first long experiments with narrative desire."
+      }
+    ],
+    "significance": "Foundational author of the modern European novel.",
+    "fact": "Don Quixote appeared in two parts (1605 and 1615) and helped invent metafictional play.",
+    "quote": "The truth may be stretched thin, but it never breaks.",
+    "visualConcept": "Windmill blades wiping the frame",
+    "motifs": [
+      "windmills",
+      "armor",
+      "inns",
+      "manuscripts"
+    ],
+    "transitionOut": "windmill-wipe",
+    "portrait": {
+      "src": "/portraits/miguel-de-cervantes.jpg",
+      "alt": "Portrait of Miguel de Cervantes",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Biblioteca Nacional de España",
+        "url": "https://www.bne.es/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Miguel de Cervantes",
+        "url": "https://www.britannica.com/biography/Miguel-de-Cervantes"
+      }
+    ],
+    "bornPlace": "Alcalá de Henares, Spain",
+    "diedPlace": "Madrid, Spain",
+    "nationality": "Spanish",
+    "occupation": "Novelist, playwright, poet, and soldier; author of Don Quixote"
+  },
+  {
+    "slug": "charles-dickens",
+    "order": 4,
+    "wing": "international",
+    "name": "Charles Dickens",
+    "fullName": "Charles John Huffam Dickens",
+    "birth": "February 7, 1812",
+    "death": "June 9, 1870",
+    "roles": [
+      "Novelist",
+      "Journalist",
+      "Social critic"
+    ],
+    "bio": "Victorian novelist of fog, factories, and feeling whose serial fiction made social conscience popular entertainment. Dickens gave the city a moral weather system.",
+    "works": [
+      {
+        "title": "Oliver Twist",
+        "year": "1837–1839",
+        "blurb": "A workhouse orphan's path through crime and kindness, exposing the cruelty of institutions that claim to care."
+      },
+      {
+        "title": "A Christmas Carol",
+        "year": "1843",
+        "blurb": "Scrooge's night of ghosts remains the language of seasonal redemption and social responsibility."
+      },
+      {
+        "title": "Great Expectations",
+        "year": "1860–1861",
+        "blurb": "Pip's rise and shame form a novel of class, guilt, and the true sources of gentility."
+      }
+    ],
+    "significance": "Defining novelist of Victorian London and serial social fiction.",
+    "fact": "Published most major novels in serial parts, shaping how readers awaited story.",
+    "quote": "No one is useless in this world who lightens the burdens of another.",
+    "visualConcept": "London fog filling the gallery",
+    "motifs": [
+      "fog",
+      "gaslight",
+      "cobblestones",
+      "serial pages"
+    ],
+    "transitionOut": "fog-fill",
+    "portrait": {
+      "src": "/portraits/charles-dickens.jpg",
+      "alt": "Portrait of Charles Dickens",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Charles Dickens Museum",
+        "url": "https://dickensmuseum.com/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Charles Dickens",
+        "url": "https://www.britannica.com/biography/Charles-Dickens"
+      }
+    ],
+    "bornPlace": "Portsmouth, England",
+    "diedPlace": "Gad's Hill Place, Higham, Kent, England",
+    "nationality": "British",
+    "occupation": "Novelist, journalist, and social critic of Victorian London"
+  },
+  {
+    "slug": "antoine-de-saint-exupery",
+    "order": 5,
+    "wing": "international",
+    "name": "Antoine de Saint-Exupéry",
+    "fullName": "Antoine Marie Jean-Baptiste Roger de Saint-Exupéry",
+    "birth": "June 29, 1900",
+    "death": "July 31, 1944 (declared)",
+    "roles": [
+      "Writer",
+      "Aviator",
+      "Poet of flight"
+    ],
+    "bio": "Aviator-writer whose desert crashes and night mail routes became philosophy. Saint-Exupéry wrote of responsibility, friendship, and the sky—without relying on copyrighted Little Prince illustrations.",
+    "works": [
+      {
+        "title": "The Little Prince",
+        "year": "1943",
+        "blurb": "A fable of planets, roses, and tamed foxes that asks adults to remember what essential things are invisible to the eye."
+      },
+      {
+        "title": "Night Flight",
+        "year": "1931",
+        "blurb": "A taut novel of airmail pilots racing storms and duty across South American nights."
+      },
+      {
+        "title": "Wind, Sand and Stars",
+        "year": "1939",
+        "blurb": "Memoir-essays of flight, crash, and human solidarity under desert stars."
+      }
+    ],
+    "significance": "Pilot-philosopher of modern French letters; The Little Prince is among the world's most translated books.",
+    "fact": "Disappeared on a 1944 reconnaissance mission over the Mediterranean.",
+    "quote": "What is essential is invisible to the eye.",
+    "visualConcept": "Rise from desert sand into open sky (no copyrighted art)",
+    "motifs": [
+      "stars",
+      "propeller",
+      "desert",
+      "night sky"
+    ],
+    "transitionOut": "rise-to-sky",
+    "notes": [
+      "Do not use copyrighted Little Prince artwork."
+    ],
+    "portrait": {
+      "src": "/portraits/antoine-de-saint-exupery.jpg",
+      "alt": "Portrait of Antoine de Saint-Exupéry",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Fondation Antoine de Saint-Exupéry",
+        "url": "https://www.antoinedesaintexupery.com/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Antoine de Saint-Exupéry",
+        "url": "https://www.britannica.com/biography/Antoine-de-Saint-Exupery"
+      }
+    ],
+    "bornPlace": "Lyon, France",
+    "diedPlace": "Mediterranean (lost on reconnaissance flight)",
+    "nationality": "French",
+    "occupation": "Writer, aviator, and essayist of flight and responsibility"
+  },
+  {
+    "slug": "george-orwell",
+    "order": 6,
+    "wing": "international",
+    "name": "George Orwell",
+    "fullName": "Eric Arthur Blair",
+    "birth": "June 25, 1903",
+    "death": "January 21, 1950",
+    "roles": [
+      "Novelist",
+      "Essayist",
+      "Journalist",
+      "Critic"
+    ],
+    "bio": "Essayist and novelist of clarity against tyranny. As George Orwell, Eric Blair made political writing an art and warned how language itself can be occupied.",
+    "works": [
+      {
+        "title": "Animal Farm",
+        "year": "1945",
+        "blurb": "A fable of revolution betrayed, where some animals become more equal than others."
+      },
+      {
+        "title": "Nineteen Eighty-Four",
+        "year": "1949",
+        "blurb": "A dystopia of surveillance, Newspeak, and the erasure of truth that still names our political nightmares."
+      },
+      {
+        "title": "Homage to Catalonia",
+        "year": "1938",
+        "blurb": "Orwell's firsthand account of the Spanish Civil War and the fractures inside the left."
+      }
+    ],
+    "significance": "Moral stylist of anti-totalitarian literature and political English prose.",
+    "fact": "Took the pen name George Orwell; fought in Spain and later wrote against both fascism and Stalinism.",
+    "quote": "In a time of deceit telling the truth is a revolutionary act.",
+    "visualConcept": "Surveillance beam intercepting the page",
+    "motifs": [
+      "eyes",
+      "posters",
+      "typewriter",
+      "fogged lenses"
+    ],
+    "transitionOut": "surveillance-intercept",
+    "portrait": {
+      "src": "/portraits/george-orwell.jpg",
+      "alt": "Portrait of George Orwell",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "The Orwell Foundation",
+        "url": "https://www.orwellfoundation.com/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — George Orwell",
+        "url": "https://www.britannica.com/biography/George-Orwell"
+      }
+    ],
+    "bornPlace": "Motihari, Bihar, British India",
+    "diedPlace": "University College Hospital, London, England",
+    "nationality": "British",
+    "occupation": "Novelist, essayist, journalist, and political critic"
+  },
+  {
+    "slug": "ernest-hemingway",
+    "order": 7,
+    "wing": "international",
+    "name": "Ernest Hemingway",
+    "fullName": "Ernest Miller Hemingway",
+    "birth": "July 21, 1899",
+    "death": "July 2, 1961",
+    "roles": [
+      "Novelist",
+      "Short story writer",
+      "Journalist",
+      "Nobel Laureate"
+    ],
+    "bio": "Master of stripped prose and iceberg understatement. Hemingway wrote war, love, and courage as surfaces that hide vast depths.",
+    "works": [
+      {
+        "title": "The Sun Also Rises",
+        "year": "1926",
+        "blurb": "Expatriates drift from Paris to Pamplona in a novel of wound, ritual, and the Lost Generation."
+      },
+      {
+        "title": "A Farewell to Arms",
+        "year": "1929",
+        "blurb": "A love story against the Italian front, where war unmakes every private vow."
+      },
+      {
+        "title": "For Whom the Bell Tolls",
+        "year": "1940",
+        "blurb": "An American in the Spanish Civil War learns that no one is an island—and that bridges are costly."
+      }
+    ],
+    "significance": "Architect of modernist spareness; Nobel Prize in Literature (1954).",
+    "fact": "Awarded the Nobel Prize in Literature in 1954.",
+    "quote": "There is nothing to writing. All you do is sit down at a typewriter and bleed.",
+    "visualConcept": "Prose stripped to a single horizon line",
+    "motifs": [
+      "horizon",
+      "typewriter",
+      "rivers",
+      "bullring dust"
+    ],
+    "transitionOut": "strip-to-horizon",
+    "portrait": {
+      "src": "/portraits/ernest-hemingway.jpg",
+      "alt": "Portrait of Ernest Hemingway",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Nobel Prize biographical",
+        "url": "https://www.nobelprize.org/prizes/literature/1954/hemingway/biographical/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Ernest Hemingway",
+        "url": "https://www.britannica.com/biography/Ernest-Hemingway"
+      },
+      {
+        "label": "John F. Kennedy Presidential Library — Hemingway Collection",
+        "url": "https://www.jfklibrary.org/"
+      }
+    ],
+    "bornPlace": "Oak Park, Illinois, United States",
+    "diedPlace": "Ketchum, Idaho, United States",
+    "nationality": "American",
+    "occupation": "Novelist, short story writer, journalist; Nobel Prize in Literature (1954)"
+  },
+  {
+    "slug": "leo-tolstoy",
+    "order": 8,
+    "wing": "international",
+    "name": "Leo Tolstoy",
+    "fullName": "Lev Nikolayevich Tolstoy",
+    "birth": "September 9, 1828 (August 28 O.S.)",
+    "death": "November 20, 1910 (November 7 O.S.)",
+    "roles": [
+      "Novelist",
+      "Essayist",
+      "Moral philosopher"
+    ],
+    "bio": "Russian novelist of war, marriage, and spiritual crisis whose epics expanded what fiction could hold. Tolstoy sought truth in both panorama and the deathbed of a single soul.",
+    "works": [
+      {
+        "title": "War and Peace",
+        "year": "1869",
+        "blurb": "A vast novel of Napoleonic invasion, family life, and the mystery of historical force."
+      },
+      {
+        "title": "Anna Karenina",
+        "year": "1878",
+        "blurb": "Adultery, society, and the search for a meaningful life—Tolstoy's most intimate epic."
+      },
+      {
+        "title": "The Death of Ivan Ilyich",
+        "year": "1886",
+        "blurb": "A novella of a bureaucrat's dying that strips away false living with merciless clarity."
+      }
+    ],
+    "significance": "Summit of the nineteenth-century realist novel and moral inquiry.",
+    "fact": "Lived and wrote at Yasnaya Polyana; later embraced radical Christian ethics and pacifism.",
+    "quote": "All happy families are alike; each unhappy family is unhappy in its own way.",
+    "visualConcept": "Horizon expanding across steppe and war",
+    "motifs": [
+      "steppe",
+      "ballrooms",
+      "battlefield smoke",
+      "icons"
+    ],
+    "transitionOut": "horizon-expand",
+    "portrait": {
+      "src": "/portraits/leo-tolstoy.jpg",
+      "alt": "Portrait of Leo Tolstoy",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Yasnaya Polyana Museum-Estate",
+        "url": "https://ypmuseum.ru/en/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — Leo Tolstoy",
+        "url": "https://www.britannica.com/biography/Leo-Tolstoy"
+      }
+    ],
+    "bornPlace": "Yasnaya Polyana, Tula Governorate, Russian Empire",
+    "diedPlace": "Astapovo (Lev Tolstoy), Russian Empire",
+    "nationality": "Russian",
+    "occupation": "Novelist, essayist, and moral philosopher"
+  },
+  {
+    "slug": "william-shakespeare",
+    "order": 9,
+    "wing": "international",
+    "name": "William Shakespeare",
+    "fullName": "William Shakespeare",
+    "birth": "1564 (baptized April 26)",
+    "death": "April 23, 1616",
+    "roles": [
+      "Playwright",
+      "Poet",
+      "Actor"
+    ],
+    "bio": "The English stage's central imagination—tragedy, comedy, history, and sonnets that still supply our language for love, ambition, and doubt.",
+    "works": [
+      {
+        "title": "Hamlet",
+        "year": "c. 1600",
+        "blurb": "A prince's delayed revenge becomes a meditation on thought, theater, and mortality."
+      },
+      {
+        "title": "Romeo and Juliet",
+        "year": "c. 1595",
+        "blurb": "Youthful love against a feud, written in heat and lyric speed."
+      },
+      {
+        "title": "Macbeth",
+        "year": "c. 1606",
+        "blurb": "Ambition, prophecy, and blood—Scotland's night collapsing under a usurper's guilt."
+      }
+    ],
+    "significance": "Cornerstone of English-language drama and poetic vocabulary.",
+    "fact": "Associated with the Lord Chamberlain's / King's Men and the Globe Theatre.",
+    "quote": "We are such stuff as dreams are made on.",
+    "visualConcept": "Page becoming a lit stage",
+    "motifs": [
+      "stage boards",
+      "candles",
+      "masks",
+      "folio pages"
+    ],
+    "transitionOut": "become-stage",
+    "portrait": {
+      "src": "/portraits/william-shakespeare.jpg",
+      "alt": "Portrait of William Shakespeare",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library",
+        "url": "https://www.folger.edu/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — William Shakespeare",
+        "url": "https://www.britannica.com/biography/William-Shakespeare"
+      }
+    ],
+    "bornPlace": "Stratford-upon-Avon, England",
+    "diedPlace": "Stratford-upon-Avon, England",
+    "nationality": "English",
+    "occupation": "Playwright, poet, and actor of the English Renaissance stage"
+  },
+  {
+    "slug": "jk-rowling",
+    "order": 10,
+    "wing": "international",
+    "name": "J. K. Rowling",
+    "fullName": "Joanne Rowling",
+    "birth": "July 31, 1965",
+    "death": null,
+    "roles": [
+      "Novelist"
+    ],
+    "bio": "British novelist whose Harry Potter series returned global childhood reading to long-form wonder. This gallery focuses on literary craft and book history—not film or theme-park iconography.",
+    "works": [
+      {
+        "title": "Harry Potter and the Philosopher's Stone",
+        "year": "1997",
+        "blurb": "A cupboard under the stairs opens onto a school of magic and a war waiting in memory."
+      },
+      {
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "year": "1999",
+        "blurb": "Time, loyalty, and fear take adult shape as the series darkens with craft and consequence."
+      },
+      {
+        "title": "Harry Potter and the Deathly Hallows",
+        "year": "2007",
+        "blurb": "The final hunt for Horcruxes closes the bildungsroman as epic of sacrifice and choice."
+      }
+    ],
+    "significance": "Late-twentieth-century phenomenon that revived reading culture for a generation.",
+    "fact": "First novel published in 1997 (UK) as Philosopher's Stone; series completed in 2007.",
+    "quote": "It is our choices, Harry, that show what we truly are, far more than our abilities.",
+    "visualConcept": "Pages turning into an archive shelf (no Hogwarts/movie look)",
+    "motifs": [
+      "books",
+      "ink",
+      "train steam (abstract)",
+      "archive boxes"
+    ],
+    "transitionOut": "pages-to-archive",
+    "notes": [
+      "Avoid Hogwarts castle / movie imagery."
+    ],
+    "portrait": {
+      "src": "/portraits/jk-rowling.jpg",
+      "alt": "Portrait of J. K. Rowling",
+      "credit": "Portrait provided in project author image document",
+      "sourceUrl": ""
+    },
+    "sources": [
+      {
+        "label": "J.K. Rowling official site",
+        "url": "https://www.jkrowling.com/"
+      },
+      {
+        "label": "Encyclopaedia Britannica — J.K. Rowling",
+        "url": "https://www.britannica.com/biography/J-K-Rowling"
+      }
+    ],
+    "bornPlace": "Yate, Gloucestershire, England",
+    "diedPlace": null,
+    "nationality": "British",
+    "occupation": "Novelist; author of the Harry Potter series"
+  }
+]
