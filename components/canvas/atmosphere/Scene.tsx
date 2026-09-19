@@ -5,45 +5,93 @@ import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 import { InstancedBookshelf } from "./Bookshelf";
+import { WoodenArch, GalleryRail, RollingLadder } from "./HallArchitecture";
 
-function GalleryColumn({ position }: { position: [number, number, number] }) {
-  return (
-    <group position={position}>
-      <mesh position={[0, -0.15, 0]}><cylinderGeometry args={[0.42, 0.48, 0.35, 10]} /><meshStandardMaterial color="#2A2420" roughness={0.7} /></mesh>
-      <mesh position={[0, 1.6, 0]}><cylinderGeometry args={[0.28, 0.32, 3.4, 10]} /><meshStandardMaterial color="#3A342C" roughness={0.65} metalness={0.12} /></mesh>
-      <mesh position={[0, 3.45, 0]}><cylinderGeometry args={[0.4, 0.3, 0.28, 10]} /><meshStandardMaterial color="#A8925A" roughness={0.55} metalness={0.25} /></mesh>
-    </group>
-  );
-}
+const WOOD = "#5C4033";
+const WOOD_DARK = "#3B2A1F";
+const GOLD = "#A8925A";
+const FOG = "#1A120C";
 
-function LightShaft({ position, rotation, width = 1.4, height = 8 }: {
-  position: [number, number, number]; rotation?: [number, number, number]; width?: number; height?: number;
+function LightShaft({
+  position, rotation, width = 1.4, height = 8,
+}: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+  width?: number;
+  height?: number;
 }) {
   return (
     <mesh position={position} rotation={rotation ?? [-0.35, 0, 0.08]}>
       <planeGeometry args={[width, height]} />
-      <meshBasicMaterial color="#A8925A" transparent opacity={0.07} depthWrite={false} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
+      <meshBasicMaterial
+        color="#C4A86A" transparent opacity={0.06} depthWrite={false}
+        side={THREE.DoubleSide} blending={THREE.AdditiveBlending}
+      />
     </mesh>
   );
 }
 
-function OpenBookPedestal() {
+function BustPedestal() {
   const bookRef = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
-    if (bookRef.current) bookRef.current.rotation.y = Math.sin(clock.elapsedTime * 0.35) * 0.15;
+    if (bookRef.current) bookRef.current.rotation.y = Math.sin(clock.elapsedTime * 0.35) * 0.12;
   });
   return (
-    <group position={[0, -2.55, 1.2]}>
-      <mesh position={[0, 0.55, 0]}><cylinderGeometry args={[0.55, 0.7, 1.1, 16]} /><meshStandardMaterial color="#2A2420" roughness={0.65} metalness={0.15} /></mesh>
-      <mesh position={[0, 1.15, 0]}><cylinderGeometry args={[0.72, 0.72, 0.1, 16]} /><meshStandardMaterial color="#3A342C" roughness={0.55} metalness={0.2} /></mesh>
-      <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.35}>
-        <group ref={bookRef} position={[0, 1.45, 0]} rotation={[-0.55, 0, 0]}>
-          <mesh position={[-0.28, 0.02, 0]} rotation={[0, 0, 0.08]}><boxGeometry args={[0.55, 0.02, 0.7]} /><meshStandardMaterial color="#E8E0D4" roughness={0.9} /></mesh>
-          <mesh position={[0.28, 0.02, 0]} rotation={[0, 0, -0.08]}><boxGeometry args={[0.55, 0.02, 0.7]} /><meshStandardMaterial color="#F4EFE6" roughness={0.88} /></mesh>
-          <mesh position={[0, -0.02, 0]}><boxGeometry args={[0.12, 0.04, 0.72]} /><meshStandardMaterial color="#5C3A28" roughness={0.6} metalness={0.2} emissive="#A8925A" emissiveIntensity={0.15} /></mesh>
+    <group position={[0, -2.55, -1.5]}>
+      <mesh position={[0, 0.45, 0]}>
+        <cylinderGeometry args={[0.48, 0.62, 0.9, 16]} />
+        <meshStandardMaterial color={WOOD_DARK} roughness={0.6} metalness={0.15} />
+      </mesh>
+      <mesh position={[0, 0.95, 0]}>
+        <cylinderGeometry args={[0.65, 0.65, 0.1, 16]} />
+        <meshStandardMaterial color={WOOD} roughness={0.5} metalness={0.2} />
+      </mesh>
+      <mesh position={[0, 0.98, 0]}>
+        <torusGeometry args={[0.55, 0.03, 8, 24]} />
+        <meshStandardMaterial color={GOLD} roughness={0.3} metalness={0.7} />
+      </mesh>
+      <mesh position={[0, 1.35, 0]}>
+        <sphereGeometry args={[0.22, 16, 12]} />
+        <meshStandardMaterial color="#E8E0D4" roughness={0.55} metalness={0.05} />
+      </mesh>
+      <mesh position={[0, 1.55, 0.02]}>
+        <sphereGeometry args={[0.16, 14, 12]} />
+        <meshStandardMaterial color="#F4EFE6" roughness={0.5} />
+      </mesh>
+      <Float speed={1.1} rotationIntensity={0.1} floatIntensity={0.25}>
+        <group ref={bookRef} position={[0.55, 1.15, 0.3]} rotation={[-0.4, 0.3, 0.1]}>
+          <mesh>
+            <boxGeometry args={[0.35, 0.08, 0.45]} />
+            <meshStandardMaterial color="#6B1C1C" roughness={0.7} metalness={0.1} />
+          </mesh>
         </group>
       </Float>
-      <pointLight position={[0, 2.2, 0.4]} intensity={0.55} color="#C4B08A" distance={6} />
+      <pointLight position={[0, 2.0, 0.5]} intensity={0.65} color="#E8D4A8" distance={7} />
+    </group>
+  );
+}
+
+function WoodPlankFloor() {
+  return (
+    <group>
+      <mesh position={[0, -2.55, -2]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[14, 30]} />
+        <meshStandardMaterial color="#4A3428" roughness={0.78} metalness={0.06} />
+      </mesh>
+      {Array.from({ length: 9 }).map((_, i) => (
+        <mesh key={`plank-${i}`} position={[-3.2 + i * 0.8, -2.545, -2]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.04, 28]} />
+          <meshStandardMaterial color="#2A1C14" roughness={0.9} metalness={0.02} />
+        </mesh>
+      ))}
+      <mesh position={[0, -2.54, -2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[1.8, 28]} />
+        <meshStandardMaterial color="#5C4033" roughness={0.55} metalness={0.12} />
+      </mesh>
+      <mesh position={[0, -2.535, -2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[0.08, 28]} />
+        <meshStandardMaterial color={GOLD} roughness={0.4} metalness={0.5} transparent opacity={0.35} />
+      </mesh>
     </group>
   );
 }
@@ -55,22 +103,28 @@ export function Atmosphere({ mobile = false }: { mobile?: boolean }) {
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [pulseIndex, setPulseIndex] = useState(-1);
   const pulseT = useRef(0);
-  const rows = mobile ? 4 : 5;
-  const cols = mobile ? 6 : 14;
+
+  const rows = mobile ? 4 : 6;
+  const cols = mobile ? 9 : 16;
   const leftCount = rows * cols;
-  const dustCount = mobile ? 60 : 120;
+  const dustCount = mobile ? 50 : 100;
 
   const dustGeo = useMemo(() => {
     const geo = new THREE.BufferGeometry();
     const arr = new Float32Array(dustCount * 3);
     for (let i = 0; i < dustCount; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 12;
-      arr[i * 3 + 1] = Math.random() * 5 - 1.5;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 16 - 1;
+      arr[i * 3] = (Math.random() - 0.5) * 10;
+      arr[i * 3 + 1] = Math.random() * 5 - 1.2;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 18 - 2;
     }
     geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
     return geo;
   }, [dustCount]);
+
+  const archZs = useMemo(
+    () => (mobile ? [2, -2, -6, -10] : [3.5, 0.5, -2.5, -5.5, -8.5, -11.5]),
+    [mobile]
+  );
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -85,20 +139,22 @@ export function Atmosphere({ mobile = false }: { mobile?: boolean }) {
     const t = clock.elapsedTime;
     pulseT.current = t;
     if (dust.current) {
-      dust.current.rotation.y = t * 0.012;
-      dust.current.rotation.x = Math.sin(t * 0.08) * 0.02;
+      dust.current.rotation.y = t * 0.01;
+      dust.current.rotation.x = Math.sin(t * 0.07) * 0.015;
     }
     if (shafts.current) {
       shafts.current.children.forEach((child, i) => {
         const mat = (child as THREE.Mesh).material as THREE.MeshBasicMaterial;
-        if (mat) mat.opacity = 0.05 + Math.sin(t * 0.4 + i) * 0.025;
+        if (mat) mat.opacity = 0.04 + Math.sin(t * 0.35 + i) * 0.02;
       });
     }
-    const targetX = pointer.current.x * 0.55 + Math.sin(t * 0.04) * 0.12;
-    const targetY = 0.35 + pointer.current.y * 0.22 + Math.cos(t * 0.035) * 0.06;
-    camera.position.x += (targetX - camera.position.x) * 0.04;
-    camera.position.y += (targetY - camera.position.y) * 0.04;
-    camera.lookAt(pointer.current.x * 0.4, 0.45 + pointer.current.y * 0.15, -2);
+    const targetX = pointer.current.x * 0.65 + Math.sin(t * 0.04) * 0.1;
+    const targetY = 0.55 + pointer.current.y * 0.28 + Math.cos(t * 0.035) * 0.05;
+    const targetZ = (mobile ? 10 : 8.2) + pointer.current.y * 0.35;
+    camera.position.x += (targetX - camera.position.x) * 0.045;
+    camera.position.y += (targetY - camera.position.y) * 0.045;
+    camera.position.z += (targetZ - camera.position.z) * 0.03;
+    camera.lookAt(pointer.current.x * 0.35, 0.6 + pointer.current.y * 0.12, -4);
   });
 
   const onHover = (idx: number | null) => setHoverIndex(idx ?? -1);
@@ -109,46 +165,62 @@ export function Atmosphere({ mobile = false }: { mobile?: boolean }) {
 
   return (
     <>
-      <color attach="background" args={["#090909"]} />
-      <fog attach="fog" args={["#0C0A08", 6, 24]} />
-      <ambientLight intensity={0.2} color="#E8E0D4" />
-      <spotLight position={[0, 6.5, 2]} angle={0.55} penumbra={0.7} intensity={1.45} color="#F4EFE6" castShadow={false} />
-      <spotLight position={[-3, 5.5, -4]} angle={0.4} penumbra={0.8} intensity={0.75} color="#A8925A" />
-      <spotLight position={[3.5, 5.5, -6]} angle={0.35} penumbra={0.85} intensity={0.6} color="#C4B08A" />
-      <pointLight position={[0, 2, 4]} intensity={0.35} color="#A8925A" />
-      <pointLight position={[-5, 1, -2]} intensity={0.22} color="#2F4A3C" />
-      <mesh position={[0, -2.55, -2]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[22, 28]} />
-        <meshStandardMaterial color="#1A1612" roughness={0.85} metalness={0.18} />
+      <color attach="background" args={[FOG]} />
+      <fog attach="fog" args={[FOG, 5, 22]} />
+      <ambientLight intensity={0.28} color="#F0E6D2" />
+      <spotLight position={[0, 5.8, 6]} angle={0.65} penumbra={0.75} intensity={1.55} color="#FFF4E0" castShadow={false} />
+      <spotLight position={[0, 6, -8]} angle={0.5} penumbra={0.8} intensity={1.1} color="#E8D4A8" />
+      <spotLight position={[-2.5, 5, -3]} angle={0.4} penumbra={0.85} intensity={0.7} color="#C4A86A" />
+      <spotLight position={[2.8, 5, -5]} angle={0.38} penumbra={0.85} intensity={0.55} color="#D4B88A" />
+      <pointLight position={[0, 2.5, 3]} intensity={0.4} color="#E8D4A8" />
+      <pointLight position={[0, 3, -10]} intensity={0.5} color="#A8925A" distance={14} />
+
+      <WoodPlankFloor />
+
+      <mesh position={[0, 4.35, -2]} rotation={[Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[14, 28]} />
+        <meshStandardMaterial color="#2A2018" roughness={0.92} side={THREE.DoubleSide} />
       </mesh>
-      <mesh position={[0, -2.52, -2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[2.2, 26]} />
-        <meshStandardMaterial color="#2A2420" roughness={0.65} metalness={0.25} />
+      {!mobile && [-4, -1, 2].map((z, i) => (
+        <mesh key={`ceil-${i}`} position={[0, 4.2, z]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[5, 2.5]} />
+          <meshBasicMaterial color="#C4A86A" transparent opacity={0.04} depthWrite={false} />
+        </mesh>
+      ))}
+
+      <mesh position={[0, 0.6, -13.2]}>
+        <boxGeometry args={[8.5, 6.5, 0.35]} />
+        <meshStandardMaterial color={WOOD_DARK} roughness={0.85} />
       </mesh>
-      <mesh position={[0, -2.51, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[1.4, 8]} />
-        <meshStandardMaterial color="#3A342C" roughness={0.35} metalness={0.45} transparent opacity={0.55} />
+      <mesh position={[0, 0.6, -13.0]}>
+        <boxGeometry args={[7.8, 5.8, 0.15]} />
+        <meshStandardMaterial color="#4A3020" roughness={0.75} metalness={0.05} />
       </mesh>
-      <mesh position={[0, 0.8, -12]}><boxGeometry args={[16, 7, 0.4]} /><meshStandardMaterial color="#12100E" roughness={0.95} /></mesh>
-      <mesh position={[0, 0.6, -11.7]}><boxGeometry args={[3.2, 4.2, 0.2]} /><meshStandardMaterial color="#0A0908" emissive="#A8925A" emissiveIntensity={0.1} roughness={1} /></mesh>
-      <mesh position={[0, 4.2, -2]} rotation={[Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[20, 26]} />
-        <meshStandardMaterial color="#12100E" roughness={0.95} side={THREE.DoubleSide} />
-      </mesh>
+
+      {archZs.map((z, i) => (
+        <WoodenArch key={`arch-${i}`} z={z} scale={1 - i * 0.01} />
+      ))}
+
       <InstancedBookshelf side="left" rows={rows} cols={cols} hoverIndex={hoverIndex} pulseIndex={pulseIndex} pulseT={pulseT} onHover={onHover} onClick={onClick} baseIndex={0} />
       <InstancedBookshelf side="right" rows={rows} cols={cols} hoverIndex={hoverIndex} pulseIndex={pulseIndex} pulseT={pulseT} onHover={onHover} onClick={onClick} baseIndex={leftCount} />
-      <GalleryColumn position={[-4.2, -2.4, 1]} />
-      <GalleryColumn position={[4.2, -2.4, 1]} />
-      <GalleryColumn position={[-4.2, -2.4, -5]} />
-      <GalleryColumn position={[4.2, -2.4, -5]} />
-      {!mobile && <OpenBookPedestal />}
+
+      {!mobile && (
+        <>
+          <GalleryRail side="left" />
+          <GalleryRail side="right" />
+          <RollingLadder side="left" />
+          <BustPedestal />
+        </>
+      )}
+
       <group ref={shafts}>
-        <LightShaft position={[-1.2, 2.2, 0]} width={1.6} height={9} />
-        <LightShaft position={[1.5, 2.4, -3]} rotation={[-0.4, 0.1, -0.06]} width={1.1} height={8} />
-        <LightShaft position={[0.2, 2.0, -7]} rotation={[-0.3, -0.05, 0.04]} width={1.8} height={7} />
+        <LightShaft position={[-0.8, 2.4, 1]} width={1.5} height={9} />
+        <LightShaft position={[1.2, 2.5, -3]} rotation={[-0.4, 0.08, -0.05]} width={1.2} height={8} />
+        <LightShaft position={[0.1, 2.2, -7]} rotation={[-0.3, -0.04, 0.03]} width={1.6} height={7} />
       </group>
+
       <points ref={dust} geometry={dustGeo}>
-        <pointsMaterial size={0.045} color="#C4B08A" transparent opacity={0.38} sizeAttenuation depthWrite={false} blending={THREE.AdditiveBlending} />
+        <pointsMaterial size={0.04} color="#D4C09A" transparent opacity={0.32} sizeAttenuation depthWrite={false} blending={THREE.AdditiveBlending} />
       </points>
     </>
   );
